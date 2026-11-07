@@ -1,89 +1,93 @@
-// Molt's website: download link, English and Turkish, bubbles and scroll reveals.
+// Molt's website: download link, English and Turkish, entrances and the hero's small animations.
 
-// The one place to change where the Download buttons point.
+// The one place to change where every Download button points.
 const DOWNLOAD_URL = "https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg";
 
 const TURKISH = {
   "nav.features": "Özellikler",
-  "nav.cleans": "Neleri temizler",
-  "nav.source": "Kaynak kod",
+  "nav.pricing": "Fiyat",
   "nav.download": "İndir",
-  "hero.eyebrow": "Ücretsiz ve açık kaynak · macOS 15+",
-  "hero.title": "Mac'inin artık ihtiyacı olmayanı at.",
-  "hero.lead": "Unuttuğun node_modules klasörleri, Xcode'un Derived Data'sı, simülatör önbellekleri, npm ve Homebrew indirmeleri, eski iOS yükleyicileri. Molt hepsini bulur, her birini açıklar ve yalnızca işaretlediğini siler.",
+  "hero.title": "Kodunun geride bıraktığı dağınıklığı temizle.",
+  "hero.lead": "Molt; node_modules klasörlerini, Xcode önbelleklerini, paket indirmelerini ve yeniden oluşturulabilen diğer dosyaları bulur. Hiçbir şey silinmeden önce her birinin ne olduğunu görürsün.",
   "hero.download": "Mac için indir",
-  "hero.appstore": "Mac App Store · $2.99",
-  "hero.fineprint": "Apple tarafından imzalı ve onaylı · Apple silicon ve Intel · Hesap yok, takip yok",
-  "hero.alt": "Kutular ve kablolarla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
-  "shot.overview": "Molt'un genel bakışı: Sistem Ayarları'ndaki gibi kategorilere bölünmüş disk",
-  "shot.xcode": "Güven seviyesi, tarih ve boyutlarıyla Xcode öğeleri",
-  "shot.done": "Temizlikten sonra yengeç 3,4 GB boşalmasını kutluyor",
-  "features.title": "Güvenebileceğin bir temizleyici",
-  "features.explain.title": "Her öğeyi açıklar",
-  "features.explain.text": "Ne olduğunu, silmenin ne kadar güvenli olduğunu ve nasıl geri geldiğini söyler. Sen işaretlemeden hiçbir şey seçili değildir.",
-  "features.rebuildable.title": "Yalnızca yeniden oluşan dosyalar",
-  "features.rebuildable.text": "Molt'un neye dokunabileceğine sabit bir kural listesi karar verir. Belgeler, fotoğraflar, ayarlar, e-posta ve iCloud bu listede asla yoktur.",
-  "features.safe.title": "Güvenli tasarım",
-  "features.safe.text": "Her öğe silinmeden hemen önce yeniden kontrol edilir. Geri gelmeyen dosyalar Çöp Sepeti'ne gider. Asla yönetici parolası istemez.",
-  "features.private.title": "Gizli ve açık",
-  "features.private.text": "Hesap yok, analitik yok, internet bağlantısı yok. Her kural GitHub'da GPL lisansıyla okunabilir Swift kodudur.",
-  "explain.title": "Gitmeden önce ne olduğunu gör",
-  "explain.text": "Her kategori öğelerini güven seviyesi, son değişiklik tarihi ve kapladığı alanla listeler. Aylardır açmadığın projeleri bulmak için güvene ya da yaşa göre filtrele.",
+  "hero.github": "GitHub'da incele",
+  "hero.note": "Ücretsiz ve açık kaynak · macOS 15 ve sonrası",
+  "widget.label": "Boşaltılabilir",
+  "widget.largest": "En büyük öğe",
+  "widget.scan": "Tara",
+  "widget.clean": "Temizle",
+  "widget.cleaning": "node_modules temizleniyor",
+  "widget.left": "2,1 GB · 3 sn kaldı",
+  "tools.label": "Kullandığın araçları tanır",
+  "know.title": "Neyi sildiğini bil.",
+  "know.text": "Her öğe ne olduğunu, en son ne zaman değiştiğini ve nasıl geri geldiğini gösterir. Sen seçmeden hiçbir şey işaretlenmez.",
   "trust.safe": "Güvenli",
-  "trust.safe.text": "Kendiliğinden ya da bir sonraki build'le geri gelir.",
+  "trust.safe.text": "Kendiliğinden yeniden oluşur.",
   "trust.caution": "Dikkat",
-  "trust.caution.text": "Yeniden indirilerek ya da kurularak geri gelir.",
+  "trust.caution.text": "Gerektiğinde yeniden indirilir.",
   "trust.risky": "Riskli",
-  "trust.risky.text": "Geri gelmez, bu yüzden Çöp Sepeti'ne gider.",
-  "cleans.title": "Molt neleri temizler",
-  "cleans.lead": "Her biri tek bir tür yeniden oluşturulabilir dosya için yazılmış 34 kural.",
-  "chip.archives": "Xcode arşivleri",
-  "chip.simulators": "Simülatör önbellekleri",
-  "chip.ipsw": "iOS yükleyicileri",
-  "chip.backups": "Cihaz yedekleri",
-  "chip.appcaches": "Uygulama önbellekleri",
-  "chip.logs": "Kayıtlar",
-  "done.title": "Yerin geri geldiğini hisset",
-  "done.text": "Tek tıkla temizle, öğelerin listeden çıktığını izle. Molt sildiği her şeyin geçmişini tutar; ne kadar yer açtığını hep bilirsin.",
-  "editions.title": "Molt'u almanın iki yolu",
-  "editions.free.title": "Doğrudan indirme",
-  "editions.free.price": "Ücretsiz",
-  "editions.free.text": "Geliştirici araçları gerektirenler dahil bütün kurallar. Apple tarafından imzalı ve onaylı.",
-  "editions.free.button": "Molt.dmg'yi indir",
-  "editions.store.title": "Mac App Store",
-  "editions.store.text": "Apple'ın sandbox'ında çalışır, otomatik güncellenir. Satın almak Molt'a destek olmanın bir yolu; ücretsiz sürüm daha fazlasını yapar.",
-  "editions.store.button": "Yakında",
-  "cta.title": "Mac'in, biraz daha hafif.",
-  "cta.button": "Molt'u ücretsiz indir",
-  "footer.license": "GPL-3.0 lisanslı özgür yazılım",
+  "trust.risky.text": "Yeniden oluşmaz, bu yüzden Çöp Sepeti'ne taşınır.",
+  "shot.xcode": "Molt, Xcode dosyalarını güven seviyesi, tarih ve boyutlarıyla listeliyor",
+  "bento.title": "Geliştiricilerin Mac'i için.",
+  "bento.text": "Molt, araçlarının dosyalarını nerede tuttuğunu bilir; başka hiçbir şeye dokunmaz.",
+  "projects.title": "Unutulan projeleri bul",
+  "projects.text": "Aylardır dokunmadığın bağımlılıkları yaşa göre filtreleyerek bul.",
+  "projects.filter": "3 aydan eski",
+  "stats.rules": "temizlik kuralı",
+  "stats.bytes": "dışarı gönderilen bayt",
+  "stats.trust": "güven seviyesi",
+  "mascot.title": "Molt'la tanış",
+  "mascot.text": "Ağır kabuğunu hafif bir kabukla değiştiren bir keşiş yengeci. Mac'in de aynısını yapabilir.",
+  "private.title": "Varsayılan olarak gizli",
+  "private.text": "Hesap yok, analitik yok, internet bağlantısı yok.",
+  "open.title": "Açık kaynak",
+  "open.text": "Her kural okunabilir bir Swift kodu ve GPL-3.0 lisanslı.",
+  "overview.title": "Diskini neyin doldurduğunu gör.",
+  "overview.text": "Genel bakış, Mac'inin depolama alanını Sistem Ayarları'ndaki gibi kategorilere ayırır. Her kategoriden sıralayıp filtreleyebileceğin ve temizleyebileceğin bir listeye geçersin.",
+  "shot.overview": "Molt'un genel bakışı: kategorilere ayrılmış disk",
+  "pricing.title": "Kullanması ücretsiz. Desteklemesi senden.",
+  "plan.free.name": "Doğrudan indirme",
+  "plan.free.price": "Ücretsiz",
+  "plan.free.text": "Geliştirici araçları gerektirenler dahil 34 kuralın tamamı.",
+  "plan.free.button": "Molt'u indir",
+  "plan.store.price": "2,99 $",
+  "plan.store.text": "Otomatik güncellenir; satın alman geliştirmeyi destekler. App Store sandbox'ı nedeniyle daha az klasöre erişir.",
+  "plan.store.button": "Yakında",
+  "closing.title": "Mac'ine biraz nefes aldır.",
+  "closing.button": "Ücretsiz indir",
+  "closing.alt": "Kutular ve kablolarla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
   "footer.privacy": "Gizlilik",
   "footer.support": "Destek",
 };
 
-const englishText = new Map();
-const englishAlt = new Map();
+const reducesMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const originals = new Map();
+
+function translate(element, attribute, key, language) {
+  const id = `${attribute}:${key}`;
+  if (!originals.has(element)) originals.set(element, new Map());
+  const saved = originals.get(element);
+  if (!saved.has(id)) saved.set(id, attribute === "text" ? element.textContent : element.alt);
+  const value = language === "tr" && TURKISH[key] ? TURKISH[key] : saved.get(id);
+  if (attribute === "text") element.textContent = value; else element.alt = value;
+}
 
 function setLanguage(language) {
   document.documentElement.lang = language;
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    if (!englishText.has(element)) englishText.set(element, element.textContent);
-    const key = element.dataset.i18n;
-    element.textContent = language === "tr" && TURKISH[key] ? TURKISH[key] : englishText.get(element);
-  });
-  document.querySelectorAll("[data-i18n-alt]").forEach((image) => {
-    if (!englishAlt.has(image)) englishAlt.set(image, image.alt);
-    const key = image.dataset.i18nAlt;
-    image.alt = language === "tr" && TURKISH[key] ? TURKISH[key] : englishAlt.get(image);
-  });
-  document.querySelectorAll("[data-shot]").forEach((image) => {
-    image.src = `/assets/${image.dataset.shot}-${language}.webp`;
-  });
+  document.querySelectorAll("[data-i18n]").forEach((el) => translate(el, "text", el.dataset.i18n, language));
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => translate(el, "alt", el.dataset.i18nAlt, language));
+  document.querySelectorAll("[data-shot]").forEach((img) => { img.src = `/assets/${img.dataset.shot}-${language}.webp`; });
+  document.querySelectorAll("[data-count]").forEach((el) => { el.textContent = formatNumber(Number(el.dataset.count), language); });
   const toggle = document.querySelector(".language");
   if (toggle) toggle.textContent = language === "tr" ? "EN" : "TR";
   try { localStorage.setItem("language", language); } catch {}
 }
 
-function savedLanguage() {
+function formatNumber(value, language) {
+  return value.toLocaleString(language === "tr" ? "tr-TR" : "en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
+function startingLanguage() {
   try {
     const saved = localStorage.getItem("language");
     if (saved) return saved;
@@ -91,42 +95,50 @@ function savedLanguage() {
   return navigator.language.toLowerCase().startsWith("tr") ? "tr" : "en";
 }
 
-function addBubbles() {
-  const layer = document.querySelector(".bubbles");
-  if (!layer || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  for (let i = 0; i < 18; i++) {
-    const bubble = document.createElement("span");
-    const size = 6 + Math.random() * 22;
-    bubble.style.width = bubble.style.height = `${size}px`;
-    bubble.style.left = `${Math.random() * 100}%`;
-    bubble.style.animationDuration = `${12 + Math.random() * 16}s`;
-    bubble.style.animationDelay = `${-Math.random() * 20}s`;
-    bubble.style.setProperty("--drift", `${(Math.random() - 0.5) * 120}px`);
-    layer.appendChild(bubble);
-  }
+// Counts the hero's number up from zero, once.
+function countUp(element) {
+  const target = Number(element.dataset.count);
+  if (reducesMotion) return;
+  const start = performance.now();
+  const duration = 1600;
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    element.textContent = formatNumber(target * eased, document.documentElement.lang);
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
 
 function revealOnScroll() {
   const items = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
+  if (reducesMotion || !("IntersectionObserver" in window)) {
     items.forEach((item) => item.classList.add("visible"));
     return;
   }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      entry.target.querySelectorAll("[data-count]").forEach(countUp);
+      observer.unobserve(entry.target);
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
   items.forEach((item) => observer.observe(item));
+}
+
+// The tools strip scrolls forever: a second copy of the list follows the first.
+function loopMarquee() {
+  const track = document.querySelector(".marquee-track");
+  if (!track) return;
+  track.innerHTML += track.innerHTML;
+  [...track.children].slice(track.children.length / 2).forEach((item) => item.setAttribute("aria-hidden", "true"));
 }
 
 document.querySelectorAll("[data-download]").forEach((link) => { link.href = DOWNLOAD_URL; });
 document.querySelector(".language")?.addEventListener("click", () => {
   setLanguage(document.documentElement.lang === "tr" ? "en" : "tr");
 });
-setLanguage(savedLanguage());
-addBubbles();
+loopMarquee();
+setLanguage(startingLanguage());
 revealOnScroll();
