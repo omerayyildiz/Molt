@@ -21,14 +21,13 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/mascot.png" width="460" alt="Molt the hermit crab leaving its old shell full of boxes and cables for a light new one">
+  <img src="docs/images/mascot.png" width="420" alt="Molt the hermit crab leaving its old shell, full of boxes and cables, for a light new one">
 </p>
 
-`node_modules` you forgot about, Xcode's Derived Data, simulator caches, npm and Homebrew downloads, old iOS
-installers, local AI models: they pile up quietly and macOS files them under "System Data". Molt finds them, tells you
-what each one is and how it comes back, and removes only what you check.
+`node_modules`, Xcode build data, package caches and AI models pile up quietly, and macOS files them under
+System Data. Molt finds them, explains each one and removes only what you choose.
 
-![Molt's overview: the disk bar split by category, like System Settings > Storage](docs/images/overview-dark.png)
+![Molt's overview: the disk split by category, like System Settings](docs/images/overview.png)
 
 ## Why Molt
 
@@ -41,7 +40,7 @@ what each one is and how it comes back, and removes only what you check.
 - **Private.** No account, no analytics, no network access.
 - **Open source.** Every rule is readable Swift code in [`Molt/Rules`](Molt/Rules).
 
-![A category page with trust levels, last changed dates and sizes](docs/images/xcode-light.png)
+![Project folders with trust levels, last changed dates and sizes](docs/images/projects.png)
 
 ## What Molt Cleans
 
@@ -62,7 +61,7 @@ what each one is and how it comes back, and removes only what you check.
 Projects in Desktop, Documents and Downloads are searched only after you add them in Settings, so macOS never surprises
 you with permission prompts.
 
-![After a cleanup, Molt the hermit crab celebrates how much space came back](docs/images/done-dark.png)
+![After a cleanup, Molt shows how much space came back](docs/images/done.png)
 
 ## Download
 
@@ -72,8 +71,8 @@ you with permission prompts.
 | Sandbox | No | Yes |
 | Covers | Every rule | Rules that only need files; asks once for your home folder |
 
-**[Download Molt.dmg](https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg)**: signed and
-notarized by Apple. Open the DMG and drag Molt to Applications.
+**[Download Molt.dmg](https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg)**, open it and drag
+Molt to Applications.
 
 The App Store version runs in Apple's sandbox, which hides most other apps' caches and cannot run tools such as
 `xcrun simctl`. Buying it is a way to support Molt; the free download does more.
@@ -95,8 +94,8 @@ swift test --scratch-path "$TMPDIR/molt-build"
 ```
 
 Release tools live in [`scripts`](scripts): `release-dmg.sh` builds, notarizes and publishes the DMG,
-`upload-app-store.sh` sends the App Store build to App Store Connect, and `screenshots.sh` saves the screens above
-from a made-up home folder.
+`upload-app-store.sh` sends the App Store build to App Store Connect, `screenshots.sh` saves the screens above
+from a made-up home folder, and `frame-images.py` frames them for this page and the website.
 
 ## Contributing
 

@@ -2,7 +2,7 @@
 
 Usage: python3 -I scripts/make-demo-home.py <folder>
 
-About 2.4 GB of zero-filled files (they take real space, so sizes look real). Delete the folder afterwards.
+About 4.4 GB of zero-filled files (they take real space, so sizes look real). Delete the folder afterwards.
 """
 import os
 import sys
@@ -42,6 +42,10 @@ fill(xcode / "DerivedData/Recipes-ckwhxyzuopqmab", 140, 9)
 fill(xcode / "DerivedData/ModuleCache.noindex", 95, 1)
 fill(xcode / "iOS DeviceSupport/iPhone17,1 26.0 (23A341)", 160, 40)
 fill(xcode / "Archives/2026-09-14", 70, 54)
+fill(xcode / "DerivedData/Molt-gbzfqkrtnvpwdo", 180, 0)
+fill(xcode / "DerivedData/Habits-dkqzxmrwplsnte", 120, 33)
+fill(xcode / "iOS DeviceSupport/iPhone16,2 18.6 (22G86)", 140, 120)
+fill(xcode / "Archives/2026-07-02", 64, 128)
 fill(home / "Library/Developer/CoreSimulator/Caches/dyld", 120, 6)
 fill(home / "Library/iTunes/iPad Software Updates", 330, 75)
 
@@ -50,6 +54,13 @@ project("portfolio", "package.json", "node_modules", 150, 12)
 project("portfolio", "package.json", ".next", 60, 12)
 project("tiny-api", "Cargo.toml", "target", 190, 95)
 project("notebook", "pyproject.toml", ".venv", 120, 210)
+project("dashboard", "package.json", "node_modules", 340, 40)
+project("blog", "package.json", "node_modules", 220, 130)
+project("design-system", "package.json", "node_modules", 180, 70)
+project("docs-site", "package.json", ".next", 90, 15)
+project("mobile-app", "Podfile", "Pods", 260, 120)
+project("cli-tool", "Cargo.toml", "target", 150, 25)
+project("ml-experiments", "pyproject.toml", ".venv", 310, 300)
 
 fill(home / ".npm/_cacache", 170, 3)
 fill(home / "Library/Caches/Homebrew", 110, 20)

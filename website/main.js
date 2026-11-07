@@ -1,58 +1,106 @@
-// Molt's website: download link, English and Turkish, entrances and the hero's small animations.
+// Molt's website: download link, English and Turkish, entrances and the hero's cleaning demo.
 
 // The one place to change where every Download button points.
 const DOWNLOAD_URL = "https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg";
 
 const TURKISH = {
-  "nav.features": "Özellikler",
+  "nav.how": "Nasıl çalışır",
+  "nav.finds": "Neleri bulur",
   "nav.pricing": "Fiyat",
   "nav.download": "İndir",
   "hero.title": "Kodunun geride bıraktığı dağınıklığı temizle.",
-  "hero.lead": "Molt; node_modules klasörlerini, Xcode önbelleklerini, paket indirmelerini ve yeniden oluşturulabilen diğer dosyaları bulur. Hiçbir şey silinmeden önce her birinin ne olduğunu görürsün.",
+  "hero.lead": "node_modules klasörleri, Xcode build verileri, paket önbellekleri ve yapay zekâ modelleri sessizce birikir. Molt bunları bulur, her birini açıklar ve yalnızca seçtiklerini siler.",
   "hero.download": "Mac için indir",
   "hero.github": "GitHub'da incele",
   "hero.note": "Ücretsiz ve açık kaynak · macOS 15 ve sonrası",
-  "widget.label": "Boşaltılabilir",
-  "widget.largest": "En büyük öğe",
-  "widget.scan": "Tara",
-  "widget.clean": "Temizle",
-  "widget.cleaning": "node_modules temizleniyor",
-  "widget.left": "2,1 GB · 3 sn kaldı",
-  "tools.label": "Kullandığın araçları tanır",
-  "know.title": "Neyi sildiğini bil.",
-  "know.text": "Her öğe ne olduğunu, en son ne zaman değiştiğini ve nasıl geri geldiğini gösterir. Sen seçmeden hiçbir şey işaretlenmez.",
+  "demo.free": "boş",
+  "demo.models": "Hugging Face modelleri",
+  "demo.simulators": "Simülatör önbellekleri",
+  "demo.done": "Tertemiz",
+  "demo.empty": "Temizlenecek bir şey kalmadı",
   "trust.safe": "Güvenli",
-  "trust.safe.text": "Kendiliğinden yeniden oluşur.",
   "trust.caution": "Dikkat",
-  "trust.caution.text": "Gerektiğinde yeniden indirilir.",
   "trust.risky": "Riskli",
-  "trust.risky.text": "Yeniden oluşmaz, bu yüzden Çöp Sepeti'ne taşınır.",
-  "shot.xcode": "Molt, Xcode dosyalarını güven seviyesi, tarih ve boyutlarıyla listeliyor",
-  "bento.title": "Geliştiricilerin Mac'i için.",
-  "bento.text": "Molt, araçlarının dosyalarını nerede tuttuğunu bilir; başka hiçbir şeye dokunmaz.",
-  "projects.title": "Unutulan projeleri bul",
-  "projects.text": "Aylardır dokunmadığın bağımlılıkları yaşa göre filtreleyerek bul.",
-  "projects.filter": "3 aydan eski",
-  "stats.rules": "temizlik kuralı",
-  "stats.bytes": "dışarı gönderilen bayt",
-  "stats.trust": "güven seviyesi",
-  "mascot.title": "Molt'la tanış",
-  "mascot.text": "Ağır kabuğunu hafif bir kabukla değiştiren bir keşiş yengeci. Mac'in de aynısını yapabilir.",
-  "private.title": "Varsayılan olarak gizli",
-  "private.text": "Hesap yok, analitik yok, internet bağlantısı yok.",
-  "open.title": "Açık kaynak",
-  "open.text": "Her kural okunabilir bir Swift kodu ve GPL-3.0 lisanslı.",
-  "overview.title": "Diskini neyin doldurduğunu gör.",
-  "overview.text": "Genel bakış, Mac'inin depolama alanını Sistem Ayarları'ndaki gibi kategorilere ayırır. Her kategoriden sıralayıp filtreleyebileceğin ve temizleyebileceğin bir listeye geçersin.",
+  "problem.title": "Mac'in, Finder'ın bakmadığı yerlerde dolar.",
+  "problem.text": "Geliştirici araçları önbelleklerini ve build dosyalarını gizli klasörlerde tutar. macOS bunları Sistem Verileri altında toplar; neyin silinebileceğini göremezsin.",
+  "fact.node.title": "node_modules klasörü başına",
+  "fact.node.text": "Her proje bağımlılıklarının kendi kopyasını tutar; bir yıldır açmadığın projeler de dahil.",
+  "fact.xcode.title": "yoğun bir Mac'te Xcode verisi",
+  "fact.xcode.text": "DerivedData ve cihaz desteği, derlediğin her projeyle ve bağladığın her iOS sürümüyle büyür.",
+  "fact.ai.title": "yerel yapay zekâ modeli başına",
+  "fact.ai.text": "Ollama, LM Studio ve Hugging Face, sen silene kadar indirdiğin her modeli saklar.",
+  "how.title": "Üç adım. Tahmin yok.",
+  "step.scan.title": "Tara",
+  "step.scan.text": "Molt yalnızca geliştirici araçlarının dosya tuttuğu yerlere bakar. Tarama birkaç saniye sürer.",
+  "cat.projects": "Projeler",
+  "cat.ai": "Yapay zekâ modelleri",
+  "step.review.title": "İncele",
+  "step.review.text": "Her öğe ne olduğunu, boyutunu, en son ne zaman değiştiğini ve nasıl geri getirileceğini gösterir.",
+  "step.review.what": "Bir JavaScript projesi için kurulmuş paketler.",
+  "step.review.back": "npm install ile geri gelir",
+  "step.clean.title": "Temizle",
+  "step.clean.text": "İşaretlediklerini sil. Yeniden oluşturulamayan her şey önce Çöp Sepeti'ne gider.",
+  "step.clean.freed": "14,2 GB boşaltıldı",
+  "finds.title": "Dağınıklığın nerede olduğunu bilir.",
+  "finds.text": "Her biri tek bir dosya türü için yazılmış 30'dan fazla kural. Her kural, dosyanın nasıl geri geldiğini söyler.",
+  "cat.xcode.back": "Bir sonraki build'de yeniden oluşur. Arşivler Çöp Sepeti'ne gider.",
+  "cat.dependencies": "Proje bağımlılıkları",
+  "cat.dependencies.back": "npm install, pip install ya da bir build ile geri gelir.",
+  "cat.packages": "Paket önbellekleri",
+  "cat.packages.back": "Bir sonraki kurulumda yeniden iner.",
+  "cat.ai.back": "Modeli, onu kullanan uygulamadan yeniden indirebilirsin.",
+  "cat.simulators": "Simülatörler",
+  "cat.simulators.back": "Simülatör ihtiyacı olanı yeniden oluşturur.",
+  "cat.devices": "iPhone ve iPad",
+  "cat.devices.ex1": "iOS yükleyicileri",
+  "cat.devices.ex2": "cihaz yedekleri",
+  "cat.devices.back": "Yükleyiciler yeniden iner. Yedekler Çöp Sepeti'ne gider.",
+  "cat.apps": "Uygulama önbellekleri",
+  "cat.apps.back": "Uygulamalar ihtiyaç duydukça yeniden oluşturur.",
+  "cat.logs": "Kayıtlar",
+  "cat.logs.back": "Uygulamalar yenilerini yazar. Eski kayıtlara gerek yoktur.",
+  "safety.title": "Güvenlik baştan düşünüldü.",
+  "safety.text": "Molt yalnızca kurallarının tanımladığı dosyaları silebilir. Geri kalan her şey dokunulmazdır.",
+  "safety.1": "Belgeler'e, Fotoğraflar'a, Mail'e, Mesajlar'a, iCloud'a ve anahtar zincirine asla dokunmaz.",
+  "safety.2": "Her dosyayı silmeden hemen önce yeniden kontrol eder.",
+  "safety.3": "Yönetici parolası istemez ve ev klasörünün dışına çıkmaz.",
+  "safety.4": "Sen seçmeden hiçbir şey seçili olmaz.",
+  "level.safe.title": "Kendiliğinden yeniden oluşur",
+  "level.safe.text": "Kalıcı olarak silinir. Bir sonraki build ya da açılışta geri gelir.",
+  "level.caution.title": "Yeniden indirilir",
+  "level.caution.text": "Kalıcı olarak silinir. Yeniden kurmak biraz zaman ve internet bağlantısı ister.",
+  "level.risky.title": "Yeniden oluşturulamaz",
+  "level.risky.text": "Çöp Sepeti'ne taşınır; fikrini değiştirebilirsin.",
+  "app.title": "Diskine net bir bakış.",
+  "app.text": "Genel bakış, depolama alanını Sistem Ayarları'ndaki gibi kategorilere ayırır. Bir kategoriyi açıp sıralayabilir, filtreleyebilir ve temizleyebilirsin.",
   "shot.overview": "Molt'un genel bakışı: kategorilere ayrılmış disk",
-  "pricing.title": "Kullanması ücretsiz. Desteklemesi senden.",
+  "shot.projects": "Güven seviyesi, tarih ve boyutlarıyla proje klasörleri",
+  "app.1": "Eski projeleri yaşa göre filtrele",
+  "app.2": "Saklamak istediğin klasörleri gizle",
+  "app.3": "Zaman içinde ne kadar yer açtığını gör",
+  "app.4": "Türkçe ve İngilizce",
+  "privacy.title": "Hesap yok. Takip yok. İnternet yok.",
+  "privacy.text": "Molt internete hiç bağlanmaz. Dosyalarının listesi Mac'inde kalır.",
+  "source.title": "Açık kaynak",
+  "source.text": "Her kural GitHub'da okuyabileceğin bir Swift kodu ve GPL-3.0 lisanslı.",
+  "source.link": "Kuralları incele",
+  "pricing.title": "Kullanması ücretsiz. Desteklemek sana kalmış.",
   "plan.free.name": "Doğrudan indirme",
   "plan.free.price": "Ücretsiz",
-  "plan.free.text": "Geliştirici araçları gerektirenler dahil 34 kuralın tamamı.",
+  "plan.free.text": "Geliştirici araçları gerektirenler dahil bütün kurallar.",
   "plan.free.button": "Molt'u indir",
   "plan.store.price": "2,99 $",
-  "plan.store.text": "Otomatik güncellenir; satın alman geliştirmeyi destekler. App Store sandbox'ı nedeniyle daha az klasöre erişir.",
+  "plan.store.text": "App Store üzerinden kurulur ve güncellenir; satın alman geliştirmeyi destekler. Sandbox nedeniyle daha az klasöre erişir.",
   "plan.store.button": "Yakında",
+  "faq.title": "Sık sorulanlar",
+  "faq.1.q": "node_modules klasörünü silmek güvenli mi?",
+  "faq.1.a": "Evet. Bir sonraki npm install, pnpm install, yarn ya da bun install komutunda package.json'dan yeniden kurulur. Yeniden kurulum biraz zaman ve internet bağlantısı gerektirdiği için Molt bunu Dikkat olarak işaretler.",
+  "faq.2.q": "Molt neden Belgeler klasörümü taramıyor?",
+  "faq.2.a": "macOS, bir uygulama Masaüstü, Belgeler ya da İndirilenler'i okumadan önce izin ister. Molt, Ayarlar'dan bir proje klasörü eklemediğin sürece bu klasörleri atlar; böylece beklenmedik bir izin penceresiyle karşılaşmazsın.",
+  "faq.3.q": "App Store sürümünün farkı ne?",
+  "faq.3.a": "Apple'ın sandbox'ında çalışır. Bu ortam diğer uygulamaların önbelleklerinin çoğunu gizler ve geliştirici araçlarının çalışmasına izin vermez. Doğrudan indirilen sürümde bütün kurallar vardır.",
+  "faq.4.q": "Molt herhangi bir veri gönderiyor mu?",
+  "faq.4.a": "Hayır. Molt'ta analitik yok ve internete hiç istek göndermez. Temizlik geçmişin Mac'inde kalır.",
   "closing.title": "Mac'ine biraz nefes aldır.",
   "closing.button": "Ücretsiz indir",
   "closing.alt": "Kutular ve kablolarla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
@@ -61,30 +109,31 @@ const TURKISH = {
 };
 
 const reducesMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const originals = new Map();
+const originals = new WeakMap();
+const language = () => document.documentElement.lang;
 
-function translate(element, attribute, key, language) {
-  const id = `${attribute}:${key}`;
-  if (!originals.has(element)) originals.set(element, new Map());
+function gigabytes(value, digits = 1) {
+  return value.toLocaleString(language() === "tr" ? "tr-TR" : "en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
+
+function translate(element, attribute, key) {
+  if (!originals.has(element)) originals.set(element, {});
   const saved = originals.get(element);
-  if (!saved.has(id)) saved.set(id, attribute === "text" ? element.textContent : element.alt);
-  const value = language === "tr" && TURKISH[key] ? TURKISH[key] : saved.get(id);
+  if (!(attribute in saved)) saved[attribute] = attribute === "text" ? element.textContent : element.alt;
+  const value = language() === "tr" && TURKISH[key] ? TURKISH[key] : saved[attribute];
   if (attribute === "text") element.textContent = value; else element.alt = value;
 }
 
-function setLanguage(language) {
-  document.documentElement.lang = language;
-  document.querySelectorAll("[data-i18n]").forEach((el) => translate(el, "text", el.dataset.i18n, language));
-  document.querySelectorAll("[data-i18n-alt]").forEach((el) => translate(el, "alt", el.dataset.i18nAlt, language));
-  document.querySelectorAll("[data-shot]").forEach((img) => { img.src = `/assets/${img.dataset.shot}-${language}.webp`; });
-  document.querySelectorAll("[data-count]").forEach((el) => { el.textContent = formatNumber(Number(el.dataset.count), language); });
+function setLanguage(next) {
+  document.documentElement.lang = next;
+  document.querySelectorAll("[data-i18n]").forEach((el) => translate(el, "text", el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => translate(el, "alt", el.dataset.i18nAlt));
+  document.querySelectorAll("[data-shot]").forEach((img) => { img.src = `/assets/${img.dataset.shot}-${next}.webp`; });
+  document.querySelectorAll("[data-gb]").forEach((el) => { el.textContent = `${gigabytes(Number(el.dataset.gb))} GB`; });
   const toggle = document.querySelector(".language");
-  if (toggle) toggle.textContent = language === "tr" ? "EN" : "TR";
-  try { localStorage.setItem("language", language); } catch {}
-}
-
-function formatNumber(value, language) {
-  return value.toLocaleString(language === "tr" ? "tr-TR" : "en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (toggle) toggle.textContent = next === "tr" ? "EN" : "TR";
+  demo?.render();
+  try { localStorage.setItem("language", next); } catch {}
 }
 
 function startingLanguage() {
@@ -95,20 +144,90 @@ function startingLanguage() {
   return navigator.language.toLowerCase().startsWith("tr") ? "tr" : "en";
 }
 
-// Counts the hero's number up from zero, once.
-function countUp(element) {
-  const target = Number(element.dataset.count);
-  if (reducesMotion) return;
-  const start = performance.now();
-  const duration = 1600;
-  const step = (now) => {
-    const t = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    element.textContent = formatNumber(target * eased, document.documentElement.lang);
-    if (t < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
+// The hero's miniature Molt: checks four items, cleans them, shows the freed space, then starts over.
+const demo = (() => {
+  const root = document.querySelector(".demo");
+  if (!root) return null;
+  const rows = [...root.querySelectorAll(".demo-row")];
+  const sizes = rows.map((row) => Number(row.dataset.size));
+  const total = sizes.reduce((a, b) => a + b, 0);
+  const free = root.querySelector("[data-demo-free]");
+  const count = root.querySelector("[data-demo-count]");
+  const clean = root.querySelector("[data-demo-clean]");
+  const freed = root.querySelector("[data-demo-freed]");
+  const startFree = 18;
+  const state = { checked: 0, free: startFree };
+  let visible = false;
+
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const whileHidden = async () => { while (!visible) await wait(250); };
+
+  function render() {
+    const n = state.checked;
+    const selected = sizes.slice(0, n).reduce((a, b) => a + b, 0);
+    rows.forEach((row, i) => row.classList.toggle("is-checked", i < n));
+    if (language() === "tr") {
+      count.textContent = n === 0 ? "Seçili öğe yok" : `${n} öğe seçili`;
+      clean.textContent = n === 0 ? "Temizle" : `${gigabytes(selected)} GB temizle`;
+      freed.textContent = `${gigabytes(total)} GB boşaltıldı`;
+    } else {
+      count.textContent = n === 0 ? "Nothing selected" : `${n} ${n === 1 ? "item" : "items"} selected`;
+      clean.textContent = n === 0 ? "Clean" : `Clean ${gigabytes(selected)} GB`;
+      freed.textContent = `${gigabytes(total)} GB freed`;
+    }
+    clean.setAttribute("aria-disabled", String(n === 0));
+    free.textContent = gigabytes(state.free);
+  }
+
+  function countFree(from, to, duration) {
+    return new Promise((resolve) => {
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        state.free = from + (to - from) * (1 - Math.pow(1 - t, 3));
+        free.textContent = gigabytes(state.free);
+        if (t < 1) requestAnimationFrame(step); else resolve();
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  async function loop() {
+    for (;;) {
+      await whileHidden();
+      state.checked = 0;
+      state.free = startFree;
+      root.classList.remove("is-clean", "is-done");
+      render();
+      await wait(1100);
+      for (let i = 1; i <= rows.length; i++) {
+        state.checked = i;
+        render();
+        await wait(520);
+      }
+      await wait(450);
+      clean.classList.add("is-pressed");
+      await wait(160);
+      clean.classList.remove("is-pressed");
+      root.classList.add("is-clean");
+      state.checked = 0;
+      render();
+      await countFree(startFree, startFree + total, 1100);
+      root.classList.add("is-done");
+      await wait(2800);
+      root.classList.remove("is-done");
+      await wait(500);
+    }
+  }
+
+  if (reducesMotion) {
+    state.checked = rows.length;
+  } else {
+    new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }).observe(root);
+    loop();
+  }
+  return { render };
+})();
 
 function revealOnScroll() {
   const items = document.querySelectorAll(".reveal");
@@ -120,25 +239,13 @@ function revealOnScroll() {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("visible");
-      entry.target.querySelectorAll("[data-count]").forEach(countUp);
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
   items.forEach((item) => observer.observe(item));
 }
 
-// The tools strip scrolls forever: a second copy of the list follows the first.
-function loopMarquee() {
-  const track = document.querySelector(".marquee-track");
-  if (!track) return;
-  track.innerHTML += track.innerHTML;
-  [...track.children].slice(track.children.length / 2).forEach((item) => item.setAttribute("aria-hidden", "true"));
-}
-
 document.querySelectorAll("[data-download]").forEach((link) => { link.href = DOWNLOAD_URL; });
-document.querySelector(".language")?.addEventListener("click", () => {
-  setLanguage(document.documentElement.lang === "tr" ? "en" : "tr");
-});
-loopMarquee();
+document.querySelector(".language")?.addEventListener("click", () => setLanguage(language() === "tr" ? "en" : "tr"));
 setLanguage(startingLanguage());
 revealOnScroll();

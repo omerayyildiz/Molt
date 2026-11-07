@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Molt · Clear the clutter your code leaves behind</title>
-  <meta name="description" content="Molt is a free, open source Mac app that finds node_modules, Xcode caches, package downloads and other files you can rebuild, and shows what each one is before anything is removed.">
+  <meta name="description" content="Molt is a free, open source Mac app that finds node_modules, Xcode build data, package caches, AI models and other files you can rebuild, explains each one and removes only what you choose.">
   <meta name="theme-color" content="#EEF0F3">
   <meta property="og:title" content="Molt · Clear the clutter your code leaves behind">
   <meta property="og:description" content="A free, open source Mac app for developers. See what each file is before anything is removed.">
@@ -16,16 +16,33 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <!-- Icons used across the page, drawn once and referenced with <use>. -->
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <symbol id="i-hammer" viewBox="0 0 24 24"><path d="m14.5 6.5 3 3M4 20l8.5-8.5M11 5l3-3 8 8-3 3-3.5-3.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-devices" viewBox="0 0 24 24"><rect x="2.5" y="5" width="13" height="10" rx="2"/><rect x="17" y="8" width="4.5" height="9" rx="1.2"/><path d="M6 19h6"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.2l2 2h8.8A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5zM12 12l8.5-4.5M12 12v9M12 12 3.5 7.5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.5 2.4 6.3 7 7-4.6.7-6.4 2.5-7 7-.6-4.5-2.4-6.3-7-7 4.6-.7 6.4-2.5 7-7z"/><path d="M19 15c.3 1.6.9 2.2 2.5 2.5-1.6.3-2.2.9-2.5 2.5-.3-1.6-.9-2.2-2.5-2.5 1.6-.3 2.2-.9 2.5-2.5z"/></symbol>
+    <symbol id="i-app" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M8 12h8M12 8v8"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+  </svg>
+
   <header class="nav-wrap">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a class="brand" href="/">
         <img src="/assets/icon.png" width="32" height="32" alt="">
         <span>Molt</span>
       </a>
       <div class="nav-links">
-        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#finds" data-i18n="nav.finds">What it finds</a>
         <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-        <a href="https://github.com/omerayyildiz/Molt">GitHub</a>
       </div>
       <div class="nav-actions">
         <button class="pill pill-quiet language" type="button" aria-label="Türkçe / English">TR</button>
@@ -35,167 +52,272 @@
   </header>
 
   <main>
-    <!-- Hero -->
+    <!-- Hero: copy and a small Molt window that cleans itself on a loop -->
     <section class="hero">
       <div class="hero-copy">
         <h1 class="reveal" data-i18n="hero.title">Clear the clutter your code leaves behind.</h1>
-        <p class="lead reveal" style="--d: 1" data-i18n="hero.lead">Molt finds node_modules, Xcode caches, package downloads and other files you can rebuild. You see what each one is before anything is removed.</p>
+        <p class="lead reveal" style="--d: 1" data-i18n="hero.lead">node_modules, Xcode build data, package caches and AI models pile up quietly. Molt finds them, explains each one and removes only what you choose.</p>
         <div class="hero-actions reveal" style="--d: 2">
           <a class="pill pill-dark pill-large" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
-            <span data-i18n="hero.download">Download for Mac</span>
+            <svg><use href="#i-download"/></svg><span data-i18n="hero.download">Download for Mac</span>
           </a>
           <a class="pill pill-light pill-large" href="https://github.com/omerayyildiz/Molt" data-i18n="hero.github">View on GitHub</a>
         </div>
         <p class="hero-note reveal" style="--d: 3" data-i18n="hero.note">Free and open source · macOS 15 or later</p>
       </div>
 
-      <div class="hero-visual reveal" style="--d: 1" aria-hidden="true">
-        <div class="widget overview-widget">
-          <div class="panel">
-            <span class="panel-label" data-i18n="widget.label">Ready to free</span>
-            <strong class="panel-number"><span data-count="12.4">12.4</span> GB</strong>
-            <div class="bubbles-row">
-              <span class="bubble" style="--c: #3478F6">
-                <svg viewBox="0 0 24 24"><path d="m14 6 4 4M4 20l9-9m-1.5-5.5 3-3 6 6-3 3"/></svg>
-              </span>
-              <span class="bubble" style="--c: #F59E42">
-                <svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5zM12 12l8.5-4.5M12 12v9M12 12 3.5 7.5"/></svg>
-              </span>
-              <span class="bubble" style="--c: #4CC3E8">
-                <svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/></svg>
-              </span>
-              <span class="bubble" style="--c: #A855F7">
-                <svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>
-              </span>
-              <span class="bubble" style="--c: #EF5A6F">
-                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8"/></svg>
-              </span>
-            </div>
+      <div class="demo reveal" style="--d: 1" aria-hidden="true">
+        <div class="demo-window">
+          <div class="demo-titlebar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="demo-title">Molt</span>
           </div>
-          <div class="row-card">
-            <div>
-              <span class="row-label" data-i18n="widget.largest">Largest item</span>
-              <span class="row-title">node_modules</span>
-              <span class="row-sub">~/Developer/shop-frontend</span>
+          <div class="demo-disk">
+            <div class="demo-disk-head">
+              <span>Macintosh HD</span>
+              <span><strong data-demo-free>18.0</strong> GB <span data-i18n="demo.free">free</span></span>
             </div>
-            <span class="row-size">2.1 GB</span>
+            <div class="demo-bar"><span class="seg-used"></span><span class="seg-junk"></span></div>
           </div>
-          <div class="widget-actions">
-            <span class="round">
-              <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
-            </span>
-            <span class="pill pill-light pill-fill" data-i18n="widget.scan">Scan</span>
-            <span class="pill pill-dark pill-fill"><span data-i18n="widget.clean">Clean</span> <svg viewBox="0 0 24 24"><path d="M12 19V5m0 0-5 5m5-5 5 5"/></svg></span>
+          <ul class="demo-list">
+            <li class="demo-row" data-size="4.3">
+              <span class="demo-check"><svg><use href="#i-check"/></svg></span>
+              <span class="demo-icon" style="--c: #3478F6"><svg><use href="#i-hammer"/></svg></span>
+              <span class="demo-name">Derived Data<small>~/Library/Developer/Xcode</small></span>
+              <span class="tag tag-safe" data-i18n="trust.safe">Safe</span>
+              <span class="demo-size" data-gb="4.3">4.3 GB</span>
+            </li>
+            <li class="demo-row" data-size="6.8">
+              <span class="demo-check"><svg><use href="#i-check"/></svg></span>
+              <span class="demo-icon" style="--c: #A855F7"><svg><use href="#i-spark"/></svg></span>
+              <span class="demo-name"><span data-i18n="demo.models">Hugging Face models</span><small>~/.cache/huggingface</small></span>
+              <span class="tag tag-caution" data-i18n="trust.caution">Caution</span>
+              <span class="demo-size" data-gb="6.8">6.8 GB</span>
+            </li>
+            <li class="demo-row" data-size="2.1">
+              <span class="demo-check"><svg><use href="#i-check"/></svg></span>
+              <span class="demo-icon" style="--c: #F08C2E"><svg><use href="#i-folder"/></svg></span>
+              <span class="demo-name">node_modules<small>~/Developer/shop</small></span>
+              <span class="tag tag-caution" data-i18n="trust.caution">Caution</span>
+              <span class="demo-size" data-gb="2.1">2.1 GB</span>
+            </li>
+            <li class="demo-row" data-size="1.0">
+              <span class="demo-check"><svg><use href="#i-check"/></svg></span>
+              <span class="demo-icon" style="--c: #32B4DE"><svg><use href="#i-phone"/></svg></span>
+              <span class="demo-name"><span data-i18n="demo.simulators">Simulator caches</span><small>~/Library/Developer</small></span>
+              <span class="tag tag-safe" data-i18n="trust.safe">Safe</span>
+              <span class="demo-size" data-gb="1.0">1.0 GB</span>
+            </li>
+            <li class="demo-empty">
+              <img src="/assets/crab-winking.webp" width="392" height="330" alt="">
+              <span data-i18n="demo.empty">Nothing left to clean</span>
+            </li>
+          </ul>
+          <div class="demo-footer">
+            <span class="demo-count" data-demo-count>Nothing selected</span>
+            <span class="pill pill-dark demo-clean" data-demo-clean>Clean</span>
           </div>
         </div>
-
-        <div class="widget progress-widget">
-          <span class="file-icon">
-            <svg viewBox="0 0 24 24"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5zM12 12l8.5-4.5M12 12v9M12 12 3.5 7.5"/></svg>
-          </span>
-          <div class="progress-text">
-            <strong data-i18n="widget.cleaning">Cleaning node_modules</strong>
-            <span data-i18n="widget.left">2.1 GB · 3 sec left</span>
+        <div class="demo-toast">
+          <img src="/assets/crab-celebrating.webp" width="334" height="400" alt="">
+          <div>
+            <strong data-i18n="demo.done">All clean</strong>
+            <span data-demo-freed>14.2 GB freed</span>
           </div>
-          <div class="bar"><span></span></div>
         </div>
       </div>
     </section>
 
-    <!-- Tools Molt knows -->
-    <section class="tools reveal">
-      <p class="tools-label" data-i18n="tools.label">Knows the tools you use</p>
-      <div class="marquee">
-        <ul class="marquee-track">
-          <li>Xcode</li><li>Simulator</li><li>npm</li><li>pnpm</li><li>Yarn</li><li>Bun</li><li>Homebrew</li><li>pip</li><li>uv</li>
-          <li>Cargo</li><li>Gradle</li><li>CocoaPods</li><li>Swift Package Manager</li><li>Next.js</li><li>Ollama</li><li>LM Studio</li><li>Hugging Face</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Know what you're removing -->
-    <section class="section showcase">
+    <!-- The problem -->
+    <section class="section">
       <div class="section-head reveal">
-        <h2 data-i18n="know.title">Know what you're removing.</h2>
-        <p data-i18n="know.text">Every item shows what it is, when it last changed and how it comes back. Nothing is selected until you choose.</p>
+        <h2 data-i18n="problem.title">Your Mac fills up where Finder doesn't look.</h2>
+        <p data-i18n="problem.text">Developer tools keep caches and build files in hidden folders. macOS files them under System Data, so you can't tell what's safe to remove.</p>
       </div>
-      <div class="trust-row reveal" style="--d: 1">
-        <div class="trust-card"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><p data-i18n="trust.safe.text">Rebuilds on its own.</p></div>
-        <div class="trust-card"><span class="tag tag-caution" data-i18n="trust.caution">Caution</span><p data-i18n="trust.caution.text">Downloads again when needed.</p></div>
-        <div class="trust-card"><span class="tag tag-risky" data-i18n="trust.risky">Risky</span><p data-i18n="trust.risky.text">Can't be rebuilt, so it goes to the Trash.</p></div>
+      <div class="facts">
+        <article class="card fact reveal">
+          <strong>1–3 GB</strong>
+          <h3 data-i18n="fact.node.title">per node_modules folder</h3>
+          <p data-i18n="fact.node.text">Every project keeps its own copy of its dependencies, even ones you haven't opened in a year.</p>
+        </article>
+        <article class="card fact reveal" style="--d: 1">
+          <strong>20 GB+</strong>
+          <h3 data-i18n="fact.xcode.title">of Xcode data on a busy Mac</h3>
+          <p data-i18n="fact.xcode.text">DerivedData and device support grow with every project you build and every iOS version you connect.</p>
+        </article>
+        <article class="card fact reveal" style="--d: 2">
+          <strong>4–40 GB</strong>
+          <h3 data-i18n="fact.ai.title">per local AI model</h3>
+          <p data-i18n="fact.ai.text">Ollama, LM Studio and Hugging Face keep every model you have downloaded until you remove it.</p>
+        </article>
       </div>
-      <figure class="frame reveal" style="--d: 2">
-        <img src="/assets/xcode-en.webp" data-shot="xcode" width="1600" height="1024" loading="lazy"
-             alt="Molt listing Xcode files with trust levels, dates and sizes" data-i18n-alt="shot.xcode">
-      </figure>
     </section>
 
-    <!-- Bento -->
-    <section id="features" class="section">
+    <!-- How it works -->
+    <section id="how" class="section">
       <div class="section-head reveal">
-        <h2 data-i18n="bento.title">Made for developer Macs.</h2>
-        <p data-i18n="bento.text">Molt knows where your tools keep their files, and touches nothing else.</p>
+        <h2 data-i18n="how.title">Three steps. No guesswork.</h2>
       </div>
-      <div class="bento">
-        <article class="widget tile tile-projects reveal">
-          <div class="tile-copy">
-            <h3 data-i18n="projects.title">Find forgotten projects</h3>
-            <p data-i18n="projects.text">Filter by age to spot dependencies you haven't touched in months.</p>
-          </div>
-          <div class="mini-list">
-            <span class="pill pill-light pill-small" data-i18n="projects.filter">Older than 3 months</span>
-            <div class="mini-row"><span class="tag tag-caution" data-i18n="trust.caution">Caution</span><span class="mini-name">node_modules <em>shop-frontend</em></span><span class="mini-size">280 MB</span></div>
-            <div class="mini-row"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><span class="mini-name">target <em>tiny-api</em></span><span class="mini-size">190 MB</span></div>
-            <div class="mini-row"><span class="tag tag-caution" data-i18n="trust.caution">Caution</span><span class="mini-name">.venv <em>notebook</em></span><span class="mini-size">120 MB</span></div>
+      <div class="steps">
+        <article class="card step reveal">
+          <div class="step-head"><span class="step-number">1</span><h3 data-i18n="step.scan.title">Scan</h3></div>
+          <p data-i18n="step.scan.text">Molt looks only where developer tools keep their files. A scan takes a few seconds.</p>
+          <div class="step-art">
+            <div class="mini-line"><span class="demo-icon small" style="--c: #3478F6"><svg><use href="#i-hammer"/></svg></span><span>Xcode</span><b>4.3 GB</b></div>
+            <div class="mini-line"><span class="demo-icon small" style="--c: #F08C2E"><svg><use href="#i-folder"/></svg></span><span data-i18n="cat.projects">Projects</span><span class="spinner"></span></div>
+            <div class="mini-line"><span class="demo-icon small" style="--c: #A855F7"><svg><use href="#i-spark"/></svg></span><span data-i18n="cat.ai">AI models</span><b>6.8 GB</b></div>
           </div>
         </article>
-
-        <article class="widget tile tile-stats reveal">
-          <div class="stats">
-            <div><strong>34</strong><span data-i18n="stats.rules">cleanup rules</span></div>
-            <div><strong>0</strong><span data-i18n="stats.bytes">bytes sent anywhere</span></div>
-            <div><strong>3</strong><span data-i18n="stats.trust">trust levels</span></div>
+        <article class="card step reveal" style="--d: 1">
+          <div class="step-head"><span class="step-number">2</span><h3 data-i18n="step.review.title">Review</h3></div>
+          <p data-i18n="step.review.text">Each item shows what it is, its size, when it last changed and how to get it back.</p>
+          <div class="step-art">
+            <div class="explain">
+              <div class="explain-top"><span class="mono">node_modules</span><span class="tag tag-caution" data-i18n="trust.caution">Caution</span></div>
+              <p data-i18n="step.review.what">Packages installed for a JavaScript project.</p>
+              <p class="explain-back"><svg><use href="#i-check"/></svg><span data-i18n="step.review.back">Comes back with npm install</span></p>
+            </div>
           </div>
         </article>
-
-        <article class="widget tile tile-mascot reveal" style="--d: 1">
-          <img src="/assets/crab-celebrating.webp" width="334" height="400" alt="" loading="lazy">
-          <div class="tile-copy">
-            <h3 data-i18n="mascot.title">Meet Molt</h3>
-            <p data-i18n="mascot.text">A hermit crab that trades its heavy shell for a lighter one. Your Mac can do the same.</p>
-          </div>
-        </article>
-
-        <article class="widget tile tile-trust reveal" style="--d: 1">
-          <div class="trust-item">
-            <span class="tile-icon">
-              <svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
-            </span>
-            <h3 data-i18n="private.title">Private by default</h3>
-            <p data-i18n="private.text">No account, no analytics, no network access.</p>
-          </div>
-          <div class="trust-item">
-            <span class="tile-icon">
-              <svg viewBox="0 0 24 24"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></svg>
-            </span>
-            <h3 data-i18n="open.title">Open source</h3>
-            <p data-i18n="open.text">Every rule is readable Swift code, licensed under GPL-3.0.</p>
+        <article class="card step reveal" style="--d: 2">
+          <div class="step-head"><span class="step-number">3</span><h3 data-i18n="step.clean.title">Clean</h3></div>
+          <p data-i18n="step.clean.text">Remove what you checked. Anything that can't be rebuilt goes to the Trash first.</p>
+          <div class="step-art">
+            <div class="freed">
+              <img src="/assets/crab-winking.webp" width="392" height="330" alt="" loading="lazy">
+              <div><strong data-i18n="demo.done">All clean</strong><span data-i18n="step.clean.freed">14.2 GB freed</span></div>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- Overview screenshot -->
-    <section class="section split">
-      <div class="split-copy reveal">
-        <h2 data-i18n="overview.title">See what fills your disk.</h2>
-        <p data-i18n="overview.text">The overview splits your Mac's storage by category, the way System Settings does. Each category opens a list you can sort, filter and clean.</p>
+    <!-- What it finds -->
+    <section id="finds" class="section">
+      <div class="section-head reveal">
+        <h2 data-i18n="finds.title">Knows where the clutter lives.</h2>
+        <p data-i18n="finds.text">More than 30 rules, each written for one kind of file. Every rule says how the file comes back.</p>
       </div>
-      <figure class="frame reveal" style="--d: 1">
-        <img src="/assets/overview-en.webp" data-shot="overview" width="1600" height="1024" loading="lazy"
-             alt="Molt's overview with the disk split by category" data-i18n-alt="shot.overview">
-      </figure>
+      <div class="categories">
+        <article class="card category reveal">
+          <span class="demo-icon" style="--c: #3478F6"><svg><use href="#i-hammer"/></svg></span>
+          <h3>Xcode</h3>
+          <ul class="examples"><li>DerivedData</li><li>Device Support</li><li>Archives</li></ul>
+          <p class="back" data-i18n="cat.xcode.back">Rebuilds with your next build. Archives go to the Trash.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><span class="tag tag-risky" data-i18n="trust.risky">Risky</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 1">
+          <span class="demo-icon" style="--c: #F08C2E"><svg><use href="#i-folder"/></svg></span>
+          <h3 data-i18n="cat.dependencies">Project dependencies</h3>
+          <ul class="examples"><li>node_modules</li><li>.venv</li><li>Pods</li><li>target</li><li>.next</li></ul>
+          <p class="back" data-i18n="cat.dependencies.back">Comes back with npm install, pip install or a build.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><span class="tag tag-caution" data-i18n="trust.caution">Caution</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 2">
+          <span class="demo-icon" style="--c: #9A6B4F"><svg><use href="#i-box"/></svg></span>
+          <h3 data-i18n="cat.packages">Package caches</h3>
+          <ul class="examples"><li>npm</li><li>pnpm</li><li>Yarn</li><li>Homebrew</li><li>pip</li><li>uv</li><li>Cargo</li></ul>
+          <p class="back" data-i18n="cat.packages.back">Downloads again on your next install.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 3">
+          <span class="demo-icon" style="--c: #A855F7"><svg><use href="#i-spark"/></svg></span>
+          <h3 data-i18n="cat.ai">AI models</h3>
+          <ul class="examples"><li>Ollama</li><li>LM Studio</li><li>Hugging Face</li></ul>
+          <p class="back" data-i18n="cat.ai.back">Download the model again from the app that uses it.</p>
+          <div class="tags"><span class="tag tag-caution" data-i18n="trust.caution">Caution</span></div>
+        </article>
+        <article class="card category reveal">
+          <span class="demo-icon" style="--c: #32B4DE"><svg><use href="#i-phone"/></svg></span>
+          <h3 data-i18n="cat.simulators">Simulators</h3>
+          <ul class="examples"><li>CoreSimulator caches</li></ul>
+          <p class="back" data-i18n="cat.simulators.back">The Simulator recreates what it needs.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 1">
+          <span class="demo-icon" style="--c: #5E6AD2"><svg><use href="#i-devices"/></svg></span>
+          <h3 data-i18n="cat.devices">iPhone and iPad</h3>
+          <ul class="examples"><li data-i18n="cat.devices.ex1">iOS installers</li><li data-i18n="cat.devices.ex2">device backups</li></ul>
+          <p class="back" data-i18n="cat.devices.back">Installers download again. Backups go to the Trash.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><span class="tag tag-risky" data-i18n="trust.risky">Risky</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 2">
+          <span class="demo-icon" style="--c: #E5576D"><svg><use href="#i-app"/></svg></span>
+          <h3 data-i18n="cat.apps">App caches</h3>
+          <ul class="examples"><li>~/Library/Caches</li></ul>
+          <p class="back" data-i18n="cat.apps.back">Apps recreate them as they need.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span></div>
+        </article>
+        <article class="card category reveal" style="--d: 3">
+          <span class="demo-icon" style="--c: #2BA89A"><svg><use href="#i-doc"/></svg></span>
+          <h3 data-i18n="cat.logs">Logs</h3>
+          <ul class="examples"><li>~/Library/Logs</li></ul>
+          <p class="back" data-i18n="cat.logs.back">Apps write new ones. Old logs aren't needed.</p>
+          <div class="tags"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Safety -->
+    <section class="section">
+      <div class="card safety reveal">
+        <div class="safety-copy">
+          <h2 data-i18n="safety.title">Careful by design.</h2>
+          <p data-i18n="safety.text">Molt can only remove what its rules describe. Everything else is off limits.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg><span data-i18n="safety.1">Never touches Documents, Photos, Mail, Messages, iCloud or your keychain.</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="safety.2">Checks every file again right before removing it.</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="safety.3">Never asks for an administrator password and stays inside your home folder.</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="safety.4">Nothing is selected until you select it.</span></li>
+          </ul>
+        </div>
+        <div class="levels">
+          <div class="level"><span class="tag tag-safe" data-i18n="trust.safe">Safe</span><div><strong data-i18n="level.safe.title">Rebuilds on its own</strong><p data-i18n="level.safe.text">Removed for good. Your next build or launch recreates it.</p></div></div>
+          <div class="level"><span class="tag tag-caution" data-i18n="trust.caution">Caution</span><div><strong data-i18n="level.caution.title">Downloads again</strong><p data-i18n="level.caution.text">Removed for good. Reinstalling takes a moment and a connection.</p></div></div>
+          <div class="level"><span class="tag tag-risky" data-i18n="trust.risky">Risky</span><div><strong data-i18n="level.risky.title">Can't be rebuilt</strong><p data-i18n="level.risky.text">Moved to the Trash, so you can still change your mind.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The app -->
+    <section class="section">
+      <div class="section-head reveal">
+        <h2 data-i18n="app.title">A clear view of your disk.</h2>
+        <p data-i18n="app.text">The overview splits your storage by category, like System Settings. Open any category to sort, filter and clean.</p>
+      </div>
+      <div class="shots reveal" style="--d: 1">
+        <figure class="frame shot-back">
+          <img src="/assets/overview-en.webp" data-shot="overview" width="1600" height="1024" loading="lazy"
+               alt="Molt's overview with the disk split by category" data-i18n-alt="shot.overview">
+        </figure>
+        <figure class="frame shot-front">
+          <img src="/assets/projects-en.webp" data-shot="projects" width="1600" height="1024" loading="lazy"
+               alt="Project folders with trust levels, dates and sizes" data-i18n-alt="shot.projects">
+        </figure>
+      </div>
+      <ul class="highlights reveal" style="--d: 2">
+        <li data-i18n="app.1">Filter by age to find old projects</li>
+        <li data-i18n="app.2">Hide folders you want to keep</li>
+        <li data-i18n="app.3">See how much you've freed over time</li>
+        <li data-i18n="app.4">English and Turkish</li>
+      </ul>
+    </section>
+
+    <!-- Privacy and open source -->
+    <section class="section">
+      <div class="duo">
+        <article class="card duo-card reveal">
+          <span class="duo-icon"><svg><use href="#i-lock"/></svg></span>
+          <h3 data-i18n="privacy.title">No account. No tracking. No network.</h3>
+          <p data-i18n="privacy.text">Molt never connects to the internet. The list of your files stays on your Mac.</p>
+        </article>
+        <article class="card duo-card reveal" style="--d: 1">
+          <span class="duo-icon"><svg><use href="#i-code"/></svg></span>
+          <h3 data-i18n="source.title">Open source</h3>
+          <p data-i18n="source.text">Every rule is Swift code you can read on GitHub, licensed under the GPL-3.0.</p>
+          <a class="text-link" href="https://github.com/omerayyildiz/Molt/tree/main/Molt/Rules" data-i18n="source.link">Read the rules</a>
+        </article>
+      </div>
     </section>
 
     <!-- Pricing -->
@@ -204,35 +326,62 @@
         <h2 data-i18n="pricing.title">Free to use. Yours to support.</h2>
       </div>
       <div class="plans">
-        <article class="widget plan reveal">
+        <article class="card plan reveal">
           <span class="plan-name" data-i18n="plan.free.name">Direct download</span>
           <strong class="plan-price" data-i18n="plan.free.price">Free</strong>
-          <p data-i18n="plan.free.text">All 34 rules, including the ones that need developer tools.</p>
-          <a class="pill pill-dark pill-fill" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="plan.free.button">Download Molt</a>
+          <p data-i18n="plan.free.text">Every rule, including the ones that need developer tools.</p>
+          <a class="pill pill-dark" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="plan.free.button">Download Molt</a>
         </article>
-        <article class="widget plan reveal" style="--d: 1">
+        <article class="card plan reveal" style="--d: 1">
           <span class="plan-name">Mac App Store</span>
           <strong class="plan-price" data-i18n="plan.store.price">$2.99</strong>
-          <p data-i18n="plan.store.text">Automatic updates, and your purchase funds development. The App Store sandbox limits it to fewer folders.</p>
-          <span class="pill pill-light pill-fill is-disabled" data-i18n="plan.store.button">Coming soon</span>
+          <p data-i18n="plan.store.text">Installs and updates through the App Store, and your purchase funds development. The sandbox limits it to fewer folders.</p>
+          <span class="pill pill-light is-disabled" data-i18n="plan.store.button">Coming soon</span>
         </article>
+      </div>
+    </section>
+
+    <!-- Questions -->
+    <section class="section">
+      <div class="section-head reveal">
+        <h2 data-i18n="faq.title">Questions</h2>
+      </div>
+      <div class="faq reveal" style="--d: 1">
+        <details>
+          <summary data-i18n="faq.1.q">Is it safe to delete node_modules?</summary>
+          <p data-i18n="faq.1.a">Yes. It's rebuilt from package.json the next time you run npm install, pnpm install, yarn or bun install. Molt marks it Caution because reinstalling takes a moment and needs a connection.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.2.q">Why doesn't Molt search my Documents folder?</summary>
+          <p data-i18n="faq.2.a">macOS asks for permission before an app reads Desktop, Documents or Downloads. Molt skips them unless you add a project folder there in Settings, so you never see a surprise prompt.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.3.q">How is the App Store version different?</summary>
+          <p data-i18n="faq.3.a">It runs in Apple's sandbox, which hides most other apps' caches and doesn't allow developer tools to run. The direct download has every rule.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.4.q">Does Molt send any data?</summary>
+          <p data-i18n="faq.4.a">No. Molt has no analytics and makes no network requests. Your cleanup history stays on your Mac.</p>
+        </details>
       </div>
     </section>
 
     <!-- Closing -->
     <section class="section">
-      <div class="widget closing reveal">
+      <div class="card closing reveal">
         <img src="/assets/mascot-scene.webp" width="984" height="620" loading="lazy"
              alt="Molt the hermit crab leaving its old shell, full of boxes and cables, for a light new one" data-i18n-alt="closing.alt">
         <h2 data-i18n="closing.title">Give your Mac room to breathe.</h2>
-        <a class="pill pill-dark pill-large" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="closing.button">Download for free</a>
+        <a class="pill pill-dark pill-large" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg">
+          <svg><use href="#i-download"/></svg><span data-i18n="closing.button">Download for free</span>
+        </a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <span>© 2026 Ömer Ayyıldız · GPL-3.0</span>
-    <nav>
+    <nav aria-label="Footer">
       <a href="/privacy" data-i18n="footer.privacy">Privacy</a>
       <a href="/support" data-i18n="footer.support">Support</a>
       <a href="https://github.com/omerayyildiz/Molt">GitHub</a>
