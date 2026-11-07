@@ -57,6 +57,10 @@ MoltAppStore.entitlements
   table does not inset for it and the last rows were hidden). Every page fills the height, including empty
   states, or the header and bar float mid-window. Never put `fixedSize(vertical:)` on wrapping text in the
   window: it made the window grow to 1487 points.
+- Mascot: Molt the hermit crab (`Mascot`, images `Mascot*` in the asset catalog) appears while a category
+  scans, when it is empty, in the clean bar while cleaning, and in `CleanupDoneCard` after a cleanup (closes
+  itself after 8 seconds). It is decorative and hidden from VoiceOver; the text beside it carries the meaning.
+  The app icon is the same crab's head on an ocean blue rounded square (Apple's 824-in-1024 grid).
 - Accessibility: checkboxes carry the rule name, rows combine their text, decorative icons are hidden, the disk
   bar has a label and value, animations go through `motion(_:value:)` so Reduce Motion stops them.
   Shortcuts: ⌘R scan, ⌘⌫ clean, ⇧⌘A check all safe items, Space checks selected rows.

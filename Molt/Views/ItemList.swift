@@ -93,7 +93,9 @@ struct ItemList: View {
 
     @ViewBuilder private var emptyState: some View {
         if model.scanningCategories.contains(category) {
-            ProgressView("Scanning…")
+            MascotMessage(mascot: .scanning, title: "Scanning…") {
+                ProgressView().controlSize(.small)
+            }
         } else if model.trustFilter != nil || model.ageFilter != .any {
             ContentUnavailableView {
                 Label("No Matching Items", systemImage: "line.3.horizontal.decrease.circle")
@@ -104,7 +106,7 @@ struct ItemList: View {
                 }
             }
         } else {
-            ContentUnavailableView("Nothing to Clean", systemImage: "checkmark.circle")
+            MascotMessage(mascot: .nothingToClean, title: "Nothing to Clean", message: "This category is already clean.")
         }
     }
 

@@ -10,6 +10,7 @@ struct CleanBar: View {
         let size = checkedItems.totalSize
         HStack(spacing: 12) {
             if let progress = model.cleaningProgress {
+                Mascot.cleaning.image(height: 28)
                 ProgressView(value: Double(progress.done), total: Double(max(progress.total, 1)))
                     .frame(width: 140)
                     .accessibilityLabel("Cleaning")

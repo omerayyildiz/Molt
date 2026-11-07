@@ -24,6 +24,8 @@ enum SidebarSelection: Hashable {
     private(set) var freedTotal = CleanupHistory().totalFreed()
     /// While cleaning: how many of the checked items are done, and how many there are.
     private(set) var cleaningProgress: (done: Int, total: Int)?
+    /// What the last cleanup removed, shown in a card until the user dismisses it or it times out.
+    private(set) var lastCleanup: (count: Int, bytes: Int64)?
     /// Items checked for removal. Nothing is checked until the user checks it.
     private(set) var checked: Set<CleanupItem.ID> = []
     /// Folders the user asked Molt never to suggest again.
@@ -193,6 +195,11 @@ enum SidebarSelection: Hashable {
             failureMessage = String(localized: "\(failed) items could not be removed. They changed since the scan or are protected.")
         }
         cleaningProgress = nil
+        if !removed.isEmpty {
+            lastCleanup = (removed.count, removed.reduce(0) { $0 + $1.bytes })
+        }
         volume = VolumeUsage.of(home)
     }
+
+    func dismissLastCleanup() { lastCleanup = nil }
 }

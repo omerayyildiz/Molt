@@ -19,6 +19,14 @@ struct ContentView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .overlay(alignment: .bottom) {
+                    if let result = model.lastCleanup {
+                        CleanupDoneCard(model: model, count: result.count, bytes: result.bytes)
+                            .padding(16)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                }
+                .motion(.spring(duration: 0.45), value: model.lastCleanup?.bytes)
                 Divider()
                 CleanBar(model: model) { confirmsCleaning = true }
             }
