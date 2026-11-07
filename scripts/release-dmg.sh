@@ -63,5 +63,7 @@ echo "DMG: $BUILD/Molt.dmg ($(du -h "$BUILD/Molt.dmg" | cut -f1))"
 if [ "$PUBLISH" = true ]; then
     [ "$MODE" = "release" ] || { echo "Only notarized DMGs are published." >&2; exit 1; }
     # The asset keeps the same name in every release, so releases/latest/download/Molt.dmg always works.
-    gh release create "v$VERSION" "$BUILD/Molt.dmg" --title "Molt $VERSION" --generate-notes
+    NOTES="docs/releases/v$VERSION.md"
+    [ -f "$NOTES" ] || { echo "Write the release notes in $NOTES first." >&2; exit 1; }
+    gh release create "v$VERSION" "$BUILD/Molt.dmg" --title "Molt $VERSION" --notes-file "$NOTES"
 fi
