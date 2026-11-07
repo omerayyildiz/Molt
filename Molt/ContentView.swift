@@ -9,6 +9,7 @@ struct ContentView: View {
         NavigationSplitView(columnVisibility: $columns) {
             Sidebar(model: model)
                 .navigationSplitViewColumnWidth(min: 210, ideal: 240)
+                .hidingSidebarToggleForScreenshots()
         } detail: {
             // The bar sits below the content, not over it, so the last rows stay reachable. The content fills
             // the height even when it is empty, so the bar stays at the bottom.
@@ -73,6 +74,22 @@ struct ContentView: View {
             await ScreenshotTour.runIfRequested(model: model)
             #endif
         }
+    }
+}
+
+private extension View {
+    /// The screenshot tour draws the window into a bitmap, which cannot draw the toolbar's glass: the sidebar
+    /// button would show as an empty white circle, so the tour hides it.
+    @ViewBuilder func hidingSidebarToggleForScreenshots() -> some View {
+        #if DEBUG
+        if UserDefaults.standard.string(forKey: "screenshotFolder") != nil {
+            toolbar(removing: .sidebarToggle)
+        } else {
+            self
+        }
+        #else
+        self
+        #endif
     }
 }
 

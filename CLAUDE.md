@@ -84,7 +84,7 @@ MoltAppStore.entitlements
 |---|---|
 | Free DMG | `scripts/release-dmg.sh` (archive, Developer ID export, DMG, notarization; `--publish` makes the GitHub release, `--dev` tries the steps without signing). The asset is always `Molt.dmg`, so `releases/latest/download/Molt.dmg` works. |
 | App Store | `scripts/upload-app-store.sh`; texts and review notes in `docs/app-store/metadata.md` |
-| Screenshots | `scripts/screenshots.sh` (Debug build, `ScreenshotTour`, made-up home from `scripts/make-demo-home.py`), then `scripts/frame-images.py` (README and website) and `scripts/app-store-screenshots.py` |
+| Screenshots | `scripts/screenshots.sh` (Debug build, `ScreenshotTour`, made-up home from `scripts/make-demo-home.py`), then `scripts/frame-images.py` (README and website) and `scripts/app-store-art.swift` |
 | Website | `website/` (static, Vercel project `miedinger/molt`, domain molt.omerayyildiz.com). The Download link is `DOWNLOAD_URL` in `website/main.js`. |
 
 - Version in `MARKETING_VERSION`; build numbers come from the date at archive time.

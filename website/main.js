@@ -104,11 +104,17 @@ const TURKISH = {
   "closing.title": "Mac'ine biraz nefes aldır.",
   "closing.button": "Ücretsiz indir",
   "closing.alt": "Kutular ve kablolarla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
+  "theme.toDark": "Koyu temaya geç",
+  "theme.toLight": "Açık temaya geç",
   "footer.privacy": "Gizlilik",
   "footer.support": "Destek",
 };
 
 const reducesMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prefersDark = matchMedia("(prefers-color-scheme: dark)");
+
+// The theme the page shows: the one chosen with the switch, otherwise the system's.
+const theme = () => document.documentElement.dataset.theme || (prefersDark.matches ? "dark" : "light");
 const originals = new WeakMap();
 const language = () => document.documentElement.lang;
 
@@ -128,12 +134,35 @@ function setLanguage(next) {
   document.documentElement.lang = next;
   document.querySelectorAll("[data-i18n]").forEach((el) => translate(el, "text", el.dataset.i18n));
   document.querySelectorAll("[data-i18n-alt]").forEach((el) => translate(el, "alt", el.dataset.i18nAlt));
-  document.querySelectorAll("[data-shot]").forEach((img) => { img.src = `/assets/${img.dataset.shot}-${next}.webp`; });
+  showScreens();
   document.querySelectorAll("[data-gb]").forEach((el) => { el.textContent = `${gigabytes(Number(el.dataset.gb))} GB`; });
   const toggle = document.querySelector(".language");
   if (toggle) toggle.textContent = next === "tr" ? "EN" : "TR";
+  labelThemeSwitch();
   demo?.render();
   try { localStorage.setItem("language", next); } catch {}
+}
+
+function showScreens() {
+  document.querySelectorAll("[data-shot]").forEach((img) => {
+    img.src = `/assets/${img.dataset.shot}-${language()}-${theme()}.webp`;
+  });
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme() === "dark" ? "#0B0D11" : "#EEF0F3");
+}
+
+function labelThemeSwitch() {
+  const toggle = document.querySelector(".theme-toggle");
+  if (!toggle) return;
+  const key = theme() === "dark" ? "theme.toLight" : "theme.toDark";
+  toggle.setAttribute("aria-label", language() === "tr" ? TURKISH[key] : key === "theme.toDark" ? "Switch to dark theme" : "Switch to light theme");
+}
+
+function switchTheme() {
+  const next = theme() === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("theme", next); } catch {}
+  showScreens();
+  labelThemeSwitch();
 }
 
 function startingLanguage() {
@@ -247,5 +276,7 @@ function revealOnScroll() {
 
 document.querySelectorAll("[data-download]").forEach((link) => { link.href = DOWNLOAD_URL; });
 document.querySelector(".language")?.addEventListener("click", () => setLanguage(language() === "tr" ? "en" : "tr"));
+document.querySelector(".theme-toggle")?.addEventListener("click", switchTheme);
+prefersDark.addEventListener("change", () => { showScreens(); labelThemeSwitch(); });
 setLanguage(startingLanguage());
 revealOnScroll();

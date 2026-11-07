@@ -1,7 +1,7 @@
 # App Store Connect: Molt 1.0
 
 Everything App Store Connect asks for, ready to paste. Screenshots: run `scripts/screenshots.sh`, then
-`python3 -I scripts/app-store-screenshots.py`; upload `build/app-store-screenshots/en` and `.../tr` (2560 × 1600).
+`swift scripts/app-store-art.swift`; upload `build/app-store-screenshots/en` and `.../tr` (2880 × 1800).
 
 ## App Information
 

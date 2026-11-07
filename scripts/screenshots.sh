@@ -21,6 +21,7 @@ for appearance in dark light; do
         arguments=(-screenshotFolder "$PWD/$folder" -demoHome "$DEMO" -AppleLanguages "($language)" -NSQuitAlwaysKeepsWindows NO)
         [ "$appearance" = light ] && arguments+=(-NSRequiresAquaSystemAppearance YES)
         "$APP" "${arguments[@]}"
+        python3 -I scripts/activate-windows.py "$folder" > /dev/null
         echo "$folder: $(ls "$folder" | wc -l | tr -d ' ') screens"
     done
 done

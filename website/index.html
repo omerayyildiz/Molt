@@ -13,6 +13,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <script>
+    try { const theme = localStorage.getItem("theme"); if (theme) document.documentElement.dataset.theme = theme; } catch {}
+  </script>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -30,6 +33,8 @@
     <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
     <symbol id="i-code" viewBox="0 0 24 24"><path d="m9 8-4 4 4 4M15 8l4 4-4 4"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
   </svg>
 
@@ -45,6 +50,9 @@
         <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       </div>
       <div class="nav-actions">
+        <button class="pill pill-quiet theme-toggle" type="button" aria-label="Switch to dark theme" data-i18n-label="theme.toDark">
+          <svg class="icon-moon"><use href="#i-moon"/></svg><svg class="icon-sun"><use href="#i-sun"/></svg>
+        </button>
         <button class="pill pill-quiet language" type="button" aria-label="Türkçe / English">TR</button>
         <a class="pill pill-dark" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="nav.download">Download</a>
       </div>
@@ -109,7 +117,7 @@
               <span class="demo-size" data-gb="1.0">1.0 GB</span>
             </li>
             <li class="demo-empty">
-              <img src="/assets/crab-winking.webp" width="392" height="330" alt="">
+              <img class="mascot" src="/assets/crab-winking.webp" width="392" height="330" alt="">
               <span data-i18n="demo.empty">Nothing left to clean</span>
             </li>
           </ul>
@@ -119,7 +127,7 @@
           </div>
         </div>
         <div class="demo-toast">
-          <img src="/assets/crab-celebrating.webp" width="334" height="400" alt="">
+          <img class="mascot" src="/assets/crab-celebrating.webp" width="334" height="400" alt="">
           <div>
             <strong data-i18n="demo.done">All clean</strong>
             <span data-demo-freed>14.2 GB freed</span>
@@ -184,7 +192,7 @@
           <p data-i18n="step.clean.text">Remove what you checked. Anything that can't be rebuilt goes to the Trash first.</p>
           <div class="step-art">
             <div class="freed">
-              <img src="/assets/crab-winking.webp" width="392" height="330" alt="" loading="lazy">
+              <img class="mascot" src="/assets/crab-winking.webp" width="392" height="330" alt="" loading="lazy">
               <div><strong data-i18n="demo.done">All clean</strong><span data-i18n="step.clean.freed">14.2 GB freed</span></div>
             </div>
           </div>
@@ -287,11 +295,11 @@
       </div>
       <div class="shots reveal" style="--d: 1">
         <figure class="frame shot-back">
-          <img src="/assets/overview-en.webp" data-shot="overview" width="1600" height="1024" loading="lazy"
+          <img src="/assets/overview-en-light.webp" data-shot="overview" width="1600" height="1024" loading="lazy"
                alt="Molt's overview with the disk split by category" data-i18n-alt="shot.overview">
         </figure>
         <figure class="frame shot-front">
-          <img src="/assets/projects-en.webp" data-shot="projects" width="1600" height="1024" loading="lazy"
+          <img src="/assets/projects-en-light.webp" data-shot="projects" width="1600" height="1024" loading="lazy"
                alt="Project folders with trust levels, dates and sizes" data-i18n-alt="shot.projects">
         </figure>
       </div>
@@ -369,7 +377,7 @@
     <!-- Closing -->
     <section class="section">
       <div class="card closing reveal">
-        <img src="/assets/mascot-scene.webp" width="984" height="620" loading="lazy"
+        <img class="mascot" src="/assets/mascot-scene.webp" width="984" height="620" loading="lazy"
              alt="Molt the hermit crab leaving its old shell, full of boxes and cables, for a light new one" data-i18n-alt="closing.alt">
         <h2 data-i18n="closing.title">Give your Mac room to breathe.</h2>
         <a class="pill pill-dark pill-large" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg">

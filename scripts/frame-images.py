@@ -51,9 +51,10 @@ card.paste(scene, (80, 50))
 framed(card, radius=44, margin=70).resize((760, round(760 * (card.height + 140) / (card.width + 140))), Image.LANCZOS).save(DOCS / "mascot.png", optimize=True)
 print("docs/images/mascot.png")
 
-# Website: plain screens (the page draws its own frame), light, both languages.
+# Website: plain screens (the page draws its own frame), both languages, both themes.
 for language in ("en", "tr"):
-    for source, name in (("1-overview", "overview"), ("2-projects", "projects")):
-        image = Image.open(SHOTS / f"light-{language}" / f"{source}.png").convert("RGB").resize((1600, 1024), Image.LANCZOS)
-        image.save(WEB / f"{name}-{language}.webp", "WEBP", quality=86, method=6)
-        print(f"website/assets/{name}-{language}.webp")
+    for theme in ("light", "dark"):
+        for source, name in (("1-overview", "overview"), ("2-projects", "projects")):
+            image = Image.open(SHOTS / f"{theme}-{language}" / f"{source}.png").convert("RGB").resize((1600, 1024), Image.LANCZOS)
+            image.save(WEB / f"{name}-{language}-{theme}.webp", "WEBP", quality=86, method=6)
+            print(f"website/assets/{name}-{language}-{theme}.webp")
