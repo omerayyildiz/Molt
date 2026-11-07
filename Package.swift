@@ -13,7 +13,7 @@ let package = Package(
             // Everything that needs AppKit or SwiftUI stays in the app.
             exclude: [
                 "Assets.xcassets", "Localizable.xcstrings", "MoltApp.swift", "ContentView.swift", "Store", "Views",
-                "Services/HomeFolderAccess.swift",
+                "Services/HomeFolderAccess.swift", "Debug", "PrivacyInfo.xcprivacy",
             ],
             sources: ["Models", "Rules", "Services", "Support"],
             swiftSettings: appSettings

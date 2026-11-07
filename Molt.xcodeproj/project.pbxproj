@@ -8,7 +8,7 @@
 
 /* Begin PBXFileReference section */
 		4D0170000000000000000011 /* Molt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Molt.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D0170000000000000000021 /* Molt App Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Molt App Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D0170000000000000000021 /* Molt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Molt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				4D0170000000000000000011 /* Molt.app */,
-				4D0170000000000000000021 /* Molt App Store.app */,
+				4D0170000000000000000021 /* Molt.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,7 +86,7 @@
 			);
 			name = "Molt App Store";
 			productName = "Molt App Store";
-			productReference = 4D0170000000000000000021 /* Molt App Store.app */;
+			productReference = 4D0170000000000000000021 /* Molt.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -290,12 +290,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Molt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "Molt-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Ömer Ayyıldız. Free software under the GPL-3.0.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = miedinger.Molt;
 				PRODUCT_NAME = Molt;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -322,12 +323,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Molt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "Molt-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Ömer Ayyıldız. Free software under the GPL-3.0.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = miedinger.Molt;
 				PRODUCT_NAME = Molt;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -356,14 +358,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Molt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "Molt-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Ömer Ayyıldız. Free software under the GPL-3.0.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = miedinger.Molt;
-				PRODUCT_NAME = "Molt App Store";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-AppStore";
+				PRODUCT_NAME = Molt;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APP_STORE";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -391,14 +395,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Molt;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "Molt-Info.plist";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Ömer Ayyıldız. Free software under the GPL-3.0.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = miedinger.Molt;
-				PRODUCT_NAME = "Molt App Store";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-AppStore";
+				PRODUCT_NAME = Molt;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) APP_STORE";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

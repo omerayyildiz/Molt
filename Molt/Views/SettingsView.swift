@@ -1,12 +1,27 @@
 import AppKit
 import SwiftUI
 
-/// Molt > Settings: extra folders to search for projects, and folders Molt never suggests.
+/// Molt > Settings: the Dock icon, extra folders to search for projects, and folders Molt never suggests.
 struct SettingsView: View {
     let model: AppModel
+    @AppStorage(DockIconStyle.storageKey) private var dockIconStyle = DockIconStyle.ocean
 
     var body: some View {
         Form {
+            Section {
+                HStack(spacing: 14) {
+                    ForEach(DockIconStyle.allCases) { style in
+                        dockIconChoice(style)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            } header: {
+                Text("Dock Icon")
+            } footer: {
+                Text("Shown in the Dock while Molt is open. Finder and Launchpad keep the standard icon.")
+                    .foregroundStyle(.secondary)
+            }
+
             Section {
                 ForEach(model.projectFolders, id: \.self) { path in
                     folderRow(path, remove: model.removeProjectFolder)
@@ -36,7 +51,30 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(width: 540, height: 460)
+        .frame(width: 540, height: 500)
+        .onChange(of: dockIconStyle) { dockIconStyle.apply() }
+    }
+
+    private func dockIconChoice(_ style: DockIconStyle) -> some View {
+        let isSelected = dockIconStyle == style
+        return Button { dockIconStyle = style } label: {
+            VStack(spacing: 6) {
+                Image(style.imageName)
+                    .resizable()
+                    .frame(width: 72, height: 72)
+                    .padding(4)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 18)
+                            .strokeBorder(isSelected ? Color.accentColor : .clear, lineWidth: 3)
+                    }
+                Text(style.title)
+                    .font(.callout)
+                    .foregroundStyle(isSelected ? .primary : .secondary)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(style.title))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     private func folderRow(_ path: String, remove: @escaping (String) -> Void) -> some View {

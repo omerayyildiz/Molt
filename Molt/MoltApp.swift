@@ -1,7 +1,9 @@
+import AppKit
 import SwiftUI
 
 @main
 struct MoltApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var model = AppModel()
 
     var body: some Scene {
@@ -15,5 +17,11 @@ struct MoltApp: App {
         Settings {
             SettingsView(model: model)
         }
+    }
+}
+
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        DockIconStyle.saved.apply()
     }
 }

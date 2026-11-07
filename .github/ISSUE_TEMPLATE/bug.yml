@@ -1,0 +1,27 @@
+name: Report a problem
+description: Something in Molt does not work as expected.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what Molt did instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - Direct download
+        - Mac App Store
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Molt and macOS versions
+      placeholder: Molt 1.0, macOS 26.1
+    validations:
+      required: true

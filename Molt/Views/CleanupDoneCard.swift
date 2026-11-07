@@ -24,7 +24,9 @@ struct CleanupDoneCard: View {
         }
         .padding(16)
         .frame(maxWidth: 420)
-        .background(.regularMaterial, in: .rect(cornerRadius: 16))
+        // Solid rather than a material: it stays readable over a busy list and draws in screenshots.
+        .background(Color(nsColor: .windowBackgroundColor), in: .rect(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(.separator))
         .shadow(color: .black.opacity(0.15), radius: 16, y: 6)
         .accessibilityElement(children: .contain)
         // Keyed by the result, so a second cleanup gets its own full time on screen.

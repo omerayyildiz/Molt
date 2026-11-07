@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molt Support</title>
+  <meta name="theme-color" content="#0B2440">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/"><img src="/assets/icon.png" width="36" height="36" alt=""><span>Molt</span></a>
+  </header>
+  <main class="page">
+    <h1>Support</h1>
+    <p>Something not working, or a folder Molt should know about? Open an issue on GitHub. Bug reports and new cleanup
+      rules are both welcome.</p>
+    <p style="margin-top: 22px"><a class="button" href="https://github.com/omerayyildiz/Molt/issues/new/choose">Open an issue on GitHub</a></p>
+
+    <h2>Common questions</h2>
+    <h3>Why is an item missing from the App Store version?</h3>
+    <p>The Mac App Store version runs in Apple's sandbox, which hides most other apps' caches and device backups and
+      does not allow running developer tools. The free download from this website has every rule.</p>
+    <h3>Can Molt delete something I need?</h3>
+    <p>Molt lists only files that its rules know to be rebuildable, and nothing is checked until you check it. Items
+      that do not come back, such as Xcode archives and device backups, go to the Trash instead of being deleted.</p>
+    <h3>Why does Molt not search my Documents folder?</h3>
+    <p>macOS asks permission before an app reads Desktop, Documents or Downloads. Molt skips them unless you add a
+      project folder there in Molt › Settings › Project Folders.</p>
+  </main>
+  <footer class="footer">
+    <p>© 2026 Ömer Ayyıldız</p>
+    <nav><a href="/">Molt</a><a href="/privacy">Privacy</a></nav>
+  </footer>
+</body>
+</html>

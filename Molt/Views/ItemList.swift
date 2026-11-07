@@ -70,7 +70,7 @@ struct ItemList: View {
 
     /// What the user can change outside the list so Molt finds more.
     @ViewBuilder private var notice: some View {
-        if category == .appleDevices, model.backupsNeedFullDiskAccess {
+        if category == .appleDevices, model.backupsNeedFullDiskAccess, !isAppStoreBuild {
             NoticeBar(
                 text: "macOS protects device backups. Give Molt Full Disk Access in Privacy & Security to list them.",
                 systemImage: "lock"
@@ -174,3 +174,11 @@ struct ItemList: View {
         model.setChecked(!rows.allSatisfy(model.isChecked), for: rows)
     }
 }
+
+/// Full Disk Access does not lift the sandbox, and App Review turns down apps that send users to grant it,
+/// so the App Store build never asks for it.
+#if APP_STORE
+private let isAppStoreBuild = true
+#else
+private let isAppStoreBuild = false
+#endif

@@ -1,11 +1,47 @@
-# Molt
+<p align="center">
+  <img src="docs/images/icon.png" width="128" height="128" alt="Molt app icon">
+</p>
 
-A Mac app that frees the space developers lose to rebuildable files: `node_modules`, Xcode's Derived Data, simulator
-caches, package manager caches, old iOS installers, local AI models and app caches.
+<h1 align="center">Molt</h1>
 
-Molt removes only what it can explain. Every item says what it is, how safe it is to remove and how it comes back.
+<p align="center">
+  <strong>Shed what your Mac no longer needs.</strong><br>
+  A free, open source Mac app that clears the space developers lose to rebuildable files.
+</p>
 
-> Status: early skeleton (v0.1 in progress). Not ready for daily use.
+<p align="center">
+  <a href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg"><img src="https://img.shields.io/badge/Download-Molt.dmg-3B2F9E?style=for-the-badge&logo=apple&logoColor=white" alt="Download Molt.dmg"></a>
+  <a href="https://molt.omerayyildiz.com"><img src="https://img.shields.io/badge/Website-molt.omerayyildiz.com-3DDBB0?style=for-the-badge" alt="Website"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/macOS-15%2B-555?logo=apple" alt="macOS 15 or later">
+  <img src="https://img.shields.io/badge/license-GPL--3.0-555" alt="GPL-3.0">
+  <img src="https://img.shields.io/badge/no%20tracking-no%20network-555" alt="No tracking, no network">
+</p>
+
+<p align="center">
+  <img src="docs/images/mascot.png" width="460" alt="Molt the hermit crab leaving its old shell full of boxes and cables for a light new one">
+</p>
+
+`node_modules` you forgot about, Xcode's Derived Data, simulator caches, npm and Homebrew downloads, old iOS
+installers, local AI models: they pile up quietly and macOS files them under "System Data". Molt finds them, tells you
+what each one is and how it comes back, and removes only what you check.
+
+![Molt's overview: the disk bar split by category, like System Settings > Storage](docs/images/overview-dark.png)
+
+## Why Molt
+
+- **Explains every item.** What it is, how safe it is to remove, and how it comes back. Nothing is checked until you
+  check it.
+- **Only rebuildable files.** Molt knows a fixed list of cleanup rules and touches nothing else: no documents, photos,
+  settings, mail or iCloud files.
+- **Safe by design.** Every item is checked again right before removal. Files that do not come back go to the Trash.
+  Molt never asks for an administrator password and never leaves your home folder.
+- **Private.** No account, no analytics, no network access.
+- **Open source.** Every rule is readable Swift code in [`Molt/Rules`](Molt/Rules).
+
+![A category page with trust levels, last changed dates and sizes](docs/images/xcode-light.png)
 
 ## What Molt Cleans
 
@@ -23,19 +59,24 @@ Molt removes only what it can explain. Every item says what it is, how safe it i
 - **Caution:** comes back by downloading or installing it again. Deleted.
 - **Risky:** does not come back. Moved to the Trash, never deleted.
 
-Nothing is checked until you check it. Molt never asks for an administrator password, never leaves your home folder
-and does not use the network.
+Projects in Desktop, Documents and Downloads are searched only after you add them in Settings, so macOS never surprises
+you with permission prompts.
 
-## Editions
+![After a cleanup, Molt the hermit crab celebrates how much space came back](docs/images/done-dark.png)
+
+## Download
 
 | | Direct download | Mac App Store |
 |---|---|---|
-| Price | Free | A small price that supports the project |
+| Price | Free | $2.99, to support the project |
 | Sandbox | No | Yes |
 | Covers | Every rule | Rules that only need files; asks once for your home folder |
 
-The App Store sandbox cannot run tools such as `xcrun simctl` or `docker`, so rules that need them are only in the
-direct download. Both are built from this repository.
+**[Download Molt.dmg](https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg)**: signed and
+notarized by Apple. Open the DMG and drag Molt to Applications.
+
+The App Store version runs in Apple's sandbox, which hides most other apps' caches and cannot run tools such as
+`xcrun simctl`. Buying it is a way to support Molt; the free download does more.
 
 ## Building
 
@@ -53,11 +94,15 @@ Run the tests (they never launch the app or touch your real home folder):
 swift test --scratch-path "$TMPDIR/molt-build"
 ```
 
+Release tools live in [`scripts`](scripts): `release-dmg.sh` builds, notarizes and publishes the DMG,
+`upload-app-store.sh` sends the App Store build to App Store Connect, and `screenshots.sh` saves the screens above
+from a made-up home folder.
+
 ## Contributing
 
 New cleanup rules are the most useful contribution. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-Molt is free software under the [GNU General Public License v3.0](LICENSE). The name "Molt" and the app icon are not
-covered by the license; forks need their own name and icon.
+Molt is free software under the [GNU General Public License v3.0](LICENSE). The name "Molt", the app icon and the
+hermit crab mascot are not covered by the license; forks need their own name and artwork.

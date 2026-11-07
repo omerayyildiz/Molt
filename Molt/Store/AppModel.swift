@@ -202,4 +202,9 @@ enum SidebarSelection: Hashable {
     }
 
     func dismissLastCleanup() { lastCleanup = nil }
+
+    #if DEBUG
+    /// Shows the cleanup card without cleaning, for `ScreenshotTour`.
+    func showCleanupResult(count: Int, bytes: Int64) { lastCleanup = (count, bytes) }
+    #endif
 }

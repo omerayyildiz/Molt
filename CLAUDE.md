@@ -78,6 +78,26 @@ MoltAppStore.entitlements
   is listed under Homebrew, not twice.
 - The project file is hand-written with file system synchronized groups; new files in `Molt/` join both targets.
 
+## Release
+
+| Task | How |
+|---|---|
+| Free DMG | `scripts/release-dmg.sh` (archive, Developer ID export, DMG, notarization; `--publish` makes the GitHub release, `--dev` tries the steps without signing). The asset is always `Molt.dmg`, so `releases/latest/download/Molt.dmg` works. |
+| App Store | `scripts/upload-app-store.sh`; texts and review notes in `docs/app-store/metadata.md` |
+| Screenshots | `scripts/screenshots.sh` (Debug build, `ScreenshotTour`, made-up home from `scripts/make-demo-home.py`), then `scripts/app-store-screenshots.py` |
+| Website | `website/` (static, Vercel project `miedinger/molt`, domain molt.omerayyildiz.com). The Download link is `DOWNLOAD_URL` in `website/main.js`. |
+
+- Version in `MARKETING_VERSION`; build numbers come from the date at archive time.
+- Both targets are named Molt (menus, About, the installed app); the App Store build goes to `<Configuration>-AppStore`.
+- `Molt-Info.plist` adds `ITSAppUsesNonExemptEncryption = NO`; `Molt/PrivacyInfo.xcprivacy` declares no tracking and
+  the reasons for file dates, disk space and UserDefaults.
+- The sandboxed build sees far fewer app caches than the direct one (measured: 3 of 18), because the sandbox hides
+  most other apps' caches even inside the granted home folder. It never asks for Full Disk Access.
+- The Dock icon style (Settings) is applied at launch with `NSApp.applicationIconImage`; macOS has no alternate app
+  icons, so Finder keeps the ocean icon.
+- `ScreenshotTour` and `-demoHome` exist only in Debug builds. Bitmaps of the window cannot draw frosted glass, so
+  the tour hides the sidebar and the cleanup card uses a solid background.
+
 ## Tests
 
 ```bash

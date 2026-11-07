@@ -3,9 +3,10 @@ import SwiftUI
 struct ContentView: View {
     let model: AppModel
     @State private var confirmsCleaning = false
+    @State private var columns = ContentView.initialColumns
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columns) {
             Sidebar(model: model)
                 .navigationSplitViewColumnWidth(min: 210, ideal: 240)
         } detail: {
@@ -66,6 +67,21 @@ struct ContentView: View {
         } message: {
             Text(model.failureMessage ?? "")
         }
-        .task { await model.scan() }
+        .task {
+            await model.scan()
+            #if DEBUG
+            await ScreenshotTour.runIfRequested(model: model)
+            #endif
+        }
+    }
+}
+
+private extension ContentView {
+    /// The screenshot tour hides the sidebar: its frosted glass does not draw into a bitmap.
+    static var initialColumns: NavigationSplitViewVisibility {
+        #if DEBUG
+        if UserDefaults.standard.string(forKey: "screenshotFolder") != nil { return .detailOnly }
+        #endif
+        return .automatic
     }
 }

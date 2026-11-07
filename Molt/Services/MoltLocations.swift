@@ -3,6 +3,12 @@ import Foundation
 nonisolated enum MoltLocations {
     /// The user's real home folder. In the App Store build's sandbox `URL.homeDirectory` is the app's container.
     static var home: URL {
+        #if DEBUG
+        // `-demoHome <folder>` scans a made-up home folder, for screenshots that show no one's real files.
+        if let demo = UserDefaults.standard.string(forKey: "demoHome") {
+            return URL(filePath: demo, directoryHint: .isDirectory)
+        }
+        #endif
         guard let directory = getpwuid(getuid())?.pointee.pw_dir else { return .homeDirectory }
         return URL(filePath: String(cString: directory), directoryHint: .isDirectory)
     }

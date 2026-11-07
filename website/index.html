@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molt: shed what your Mac no longer needs</title>
+  <meta name="description" content="Molt is a free, open source Mac app that clears node_modules, Xcode Derived Data, caches and other rebuildable developer files, and explains every item.">
+  <meta name="theme-color" content="#0B2440">
+  <meta property="og:title" content="Molt: shed what your Mac no longer needs">
+  <meta property="og:description" content="Free, open source Mac cleaner for developers. Explains every item, removes only rebuildable files.">
+  <meta property="og:image" content="https://molt.omerayyildiz.com/assets/og-image.png">
+  <meta property="og:url" content="https://molt.omerayyildiz.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="bubbles" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="/">
+      <img src="/assets/icon.png" width="36" height="36" alt="">
+      <span>Molt</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#cleans" data-i18n="nav.cleans">What it cleans</a>
+      <a href="https://github.com/omerayyildiz/Molt" data-i18n="nav.source">Source code</a>
+      <button class="language" type="button" aria-label="Türkçe / English">TR</button>
+      <a class="button button-small" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="nav.download">Download</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text reveal">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Free and open source · macOS 15+</p>
+        <h1 data-i18n="hero.title">Shed what your Mac no longer needs.</h1>
+        <p class="lead" data-i18n="hero.lead">node_modules you forgot, Xcode's Derived Data, simulator caches, npm and Homebrew downloads, old iOS installers. Molt finds them, explains each one, and removes only what you check.</p>
+        <div class="actions">
+          <a class="button" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
+            <span data-i18n="hero.download">Download for Mac</span>
+          </a>
+          <a class="button button-ghost" href="#editions" data-i18n="hero.appstore">Mac App Store · $2.99</a>
+        </div>
+        <p class="fineprint" data-i18n="hero.fineprint">Signed and notarized by Apple · Apple silicon and Intel · No account, no tracking</p>
+      </div>
+      <div class="hero-art reveal">
+        <img class="float" src="/assets/mascot-hero.webp" width="900" height="533" alt="Molt the hermit crab leaving its old shell, full of boxes and cables, for a light new one" data-i18n-alt="hero.alt">
+      </div>
+    </section>
+
+    <section class="showcase reveal">
+      <div class="window">
+        <img src="/assets/overview-en.webp" data-shot="overview" width="1600" height="1024" alt="Molt's overview: the disk split by category, like System Settings" data-i18n-alt="shot.overview" loading="lazy">
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2 class="reveal" data-i18n="features.title">A cleaner you can trust</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <img src="/assets/crab-scanning.webp" alt="" loading="lazy">
+          <h3 data-i18n="features.explain.title">Explains every item</h3>
+          <p data-i18n="features.explain.text">What it is, how safe it is to remove and how it comes back. Nothing is checked until you check it.</p>
+        </article>
+        <article class="card reveal">
+          <img src="/assets/crab-pushing.webp" alt="" loading="lazy">
+          <h3 data-i18n="features.rebuildable.title">Only rebuildable files</h3>
+          <p data-i18n="features.rebuildable.text">A fixed list of rules decides what Molt may touch. Documents, photos, settings, mail and iCloud are never on it.</p>
+        </article>
+        <article class="card reveal">
+          <img src="/assets/crab-winking.webp" alt="" loading="lazy">
+          <h3 data-i18n="features.safe.title">Safe by design</h3>
+          <p data-i18n="features.safe.text">Every item is checked again right before removal. Files that do not come back go to the Trash. No administrator password, ever.</p>
+        </article>
+        <article class="card reveal">
+          <img src="/assets/crab-heart.webp" alt="" loading="lazy">
+          <h3 data-i18n="features.private.title">Private and open</h3>
+          <p data-i18n="features.private.text">No account, no analytics, no network. Every rule is readable Swift code on GitHub under the GPL.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="split section">
+      <div class="split-text reveal">
+        <h2 data-i18n="explain.title">See what it is before it goes</h2>
+        <p data-i18n="explain.text">Each category lists its items with a trust level, when they last changed and how much space they take. Filter by trust or age to find projects you have not opened in months.</p>
+        <ul class="trust">
+          <li><span class="badge safe" data-i18n="trust.safe">Safe</span><span data-i18n="trust.safe.text">Comes back by itself or with the next build.</span></li>
+          <li><span class="badge caution" data-i18n="trust.caution">Caution</span><span data-i18n="trust.caution.text">Comes back by downloading or installing again.</span></li>
+          <li><span class="badge risky" data-i18n="trust.risky">Risky</span><span data-i18n="trust.risky.text">Does not come back, so it goes to the Trash.</span></li>
+        </ul>
+      </div>
+      <div class="window tilt reveal">
+        <img src="/assets/xcode-en.webp" data-shot="xcode" width="1600" height="1024" alt="Xcode items with trust levels, dates and sizes" data-i18n-alt="shot.xcode" loading="lazy">
+      </div>
+    </section>
+
+    <section id="cleans" class="section">
+      <h2 class="reveal" data-i18n="cleans.title">What Molt cleans</h2>
+      <p class="center muted reveal" data-i18n="cleans.lead">34 rules, each written for one kind of rebuildable file.</p>
+      <ul class="chips reveal">
+        <li>Derived Data</li><li>SwiftUI Previews</li><li>Device Support</li><li data-i18n="chip.archives">Xcode Archives</li>
+        <li data-i18n="chip.simulators">Simulator caches</li><li data-i18n="chip.ipsw">iOS installers</li><li data-i18n="chip.backups">Device backups</li>
+        <li>node_modules</li><li>.next</li><li>Rust target</li><li>Swift .build</li><li>Pods</li><li>.venv</li><li>Gradle build</li>
+        <li>npm</li><li>npx</li><li>Yarn</li><li>pnpm</li><li>Bun</li><li>Homebrew</li><li>pip</li><li>uv</li><li>Cargo</li><li>CocoaPods</li>
+        <li>Ollama</li><li>LM Studio</li><li>Hugging Face</li><li data-i18n="chip.appcaches">App caches</li><li data-i18n="chip.logs">Logs</li>
+      </ul>
+    </section>
+
+    <section class="split section reverse">
+      <div class="split-text reveal">
+        <h2 data-i18n="done.title">Feel the space come back</h2>
+        <p data-i18n="done.text">Clean with one click and watch the items leave the list. Molt keeps a history of everything it removed, so you always know how much it freed.</p>
+      </div>
+      <div class="window reveal">
+        <img src="/assets/done-en.webp" data-shot="done" width="1600" height="1024" alt="After a cleanup, the crab celebrates 3.4 GB freed" data-i18n-alt="shot.done" loading="lazy">
+      </div>
+    </section>
+
+    <section id="editions" class="section">
+      <h2 class="reveal" data-i18n="editions.title">Two ways to get Molt</h2>
+      <div class="editions">
+        <article class="edition featured reveal">
+          <h3 data-i18n="editions.free.title">Direct download</h3>
+          <p class="price" data-i18n="editions.free.price">Free</p>
+          <p data-i18n="editions.free.text">Every rule, including the ones that need developer tools. Signed and notarized by Apple.</p>
+          <a class="button" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="editions.free.button">Download Molt.dmg</a>
+        </article>
+        <article class="edition reveal">
+          <h3 data-i18n="editions.store.title">Mac App Store</h3>
+          <p class="price">$2.99</p>
+          <p data-i18n="editions.store.text">Runs in Apple's sandbox, with automatic updates. Buying it is a way to support Molt; the free download does more.</p>
+          <span class="button button-ghost disabled" data-i18n="editions.store.button">Coming soon</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta section reveal">
+      <img src="/assets/crab-celebrating.webp" alt="" loading="lazy">
+      <h2 data-i18n="cta.title">Your Mac, a little lighter.</h2>
+      <a class="button" data-download href="https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg" data-i18n="cta.button">Download Molt for free</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Ömer Ayyıldız · <span data-i18n="footer.license">Free software under the GPL-3.0</span></p>
+    <nav>
+      <a href="https://github.com/omerayyildiz/Molt">GitHub</a>
+      <a href="/privacy" data-i18n="footer.privacy">Privacy</a>
+      <a href="/support" data-i18n="footer.support">Support</a>
+    </nav>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

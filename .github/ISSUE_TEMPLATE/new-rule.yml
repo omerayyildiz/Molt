@@ -1,0 +1,31 @@
+name: Suggest a cleanup rule
+description: A folder that piles up on your Mac and can be rebuilt.
+labels: [rule]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Path
+      description: Where the files are, relative to your home folder.
+      placeholder: ~/Library/Caches/SomeTool
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Which app or tool creates it
+      placeholder: SomeTool 3.2
+    validations:
+      required: true
+  - type: textarea
+    id: recovery
+    attributes:
+      label: How it comes back after removal
+      description: Rebuilt automatically, downloaded again, or gone for good?
+    validations:
+      required: true
+  - type: input
+    id: size
+    attributes:
+      label: Typical size on your Mac
+      placeholder: 2.4 GB
