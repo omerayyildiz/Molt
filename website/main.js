@@ -103,7 +103,7 @@ const TURKISH = {
   "faq.4.a": "Hayır. Molt'ta analitik yok ve internete hiç istek göndermez. Temizlik geçmişin Mac'inde kalır.",
   "closing.title": "Mac'ine biraz nefes aldır.",
   "closing.button": "Ücretsiz indir",
-  "closing.alt": "Kutular ve kablolarla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
+  "closing.alt": "Kutularla dolu eski kabuğunu bırakıp hafif yeni kabuğuna geçen keşiş yengeci Molt",
   "theme.toDark": "Koyu temaya geç",
   "theme.toLight": "Açık temaya geç",
   "footer.privacy": "Gizlilik",
@@ -246,6 +246,8 @@ const demo = (() => {
       await wait(2800);
       root.classList.remove("is-done");
       await wait(500);
+      root.classList.remove("is-clean");
+      await countFree(state.free, startFree, 900);
     }
   }
 

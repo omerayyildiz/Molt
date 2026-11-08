@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/mascot.png" width="420" alt="Molt the hermit crab leaving its old shell, full of boxes and cables, for a light new one">
+  <img src="docs/images/mascot.png" width="420" alt="Molt the hermit crab leaving its old shell, full of boxes, for a light new one">
 </p>
 
 `node_modules`, Xcode build data, package caches and AI models pile up quietly, and macOS files them under

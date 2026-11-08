@@ -44,11 +44,8 @@ for source, name in (("1-overview", "overview"), ("2-projects", "projects"), ("4
     framed(Image.open(SHOTS / "light-en" / f"{source}.png"), radius=24, margin=80).save(DOCS / f"{name}.png", optimize=True)
     print(f"docs/images/{name}.png")
 
-# README: the crab scene on a white card instead of a cut-out.
-scene = Image.open(WEB / "mascot-scene.webp").convert("RGB")
-card = Image.new("RGB", (scene.width + 160, scene.height + 100), (255, 255, 255))
-card.paste(scene, (80, 50))
-framed(card, radius=44, margin=70).resize((760, round(760 * (card.height + 140) / (card.width + 140))), Image.LANCZOS).save(DOCS / "mascot.png", optimize=True)
+# README: the crab scene, transparent so it sits on GitHub's light and dark pages.
+Image.open(WEB / "mascot-scene.webp").save(DOCS / "mascot.png", optimize=True)
 print("docs/images/mascot.png")
 
 # Website: plain screens (the page draws its own frame), both languages, both themes.
