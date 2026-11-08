@@ -2,7 +2,7 @@
 
 An open source Mac app that removes rebuildable files developers accumulate (`node_modules`, Xcode Derived Data,
 simulator and package manager caches, old iOS installers, local AI models, app caches). GPL-3.0. Shipped two ways
-from one codebase: a free direct download (Developer ID, no sandbox) and a paid Mac App Store build (sandbox).
+from one codebase: a free direct download (Developer ID, no sandbox) and a free Mac App Store build (sandbox).
 
 ## Principles
 

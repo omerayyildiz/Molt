@@ -67,15 +67,16 @@ you with permission prompts.
 
 | | Direct download | Mac App Store |
 |---|---|---|
-| Price | Free | $2.99, to support the project |
+| Price | Free | Free |
 | Sandbox | No | Yes |
+| Updates | Download the new release | Automatic |
 | Covers | Every rule | Rules that only need files; asks once for your home folder |
 
 **[Download Molt.dmg](https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg)**, open it and drag
 Molt to Applications.
 
 The App Store version runs in Apple's sandbox, which hides most other apps' caches and cannot run tools such as
-`xcrun simctl`. Buying it is a way to support Molt; the free download does more.
+`xcrun simctl`, so the direct download covers more.
 
 ## Building
 

@@ -30,6 +30,7 @@ VERSION=$(xcodebuild -project Molt.xcodeproj -scheme Molt -showBuildSettings 2>/
 BUILD_NUMBER=$(date +%Y%m%d%H%M)
 
 echo "Molt $VERSION ($BUILD_NUMBER), $MODE"
+[ ! -e /Volumes/Molt ] || { echo "Eject the mounted Molt disk first." >&2; exit 1; }
 rm -rf "$BUILD"
 mkdir -p "$BUILD"
 
@@ -46,10 +47,19 @@ else
 fi
 
 STAGE="$BUILD/dmg"
-mkdir -p "$STAGE"
+mkdir -p "$STAGE/.background"
 cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
-hdiutil create -volname "Molt" -srcfolder "$STAGE" -ov -format UDZO -quiet "$BUILD/Molt.dmg"
+cp scripts/dmg-background.tiff "$STAGE/.background/background.tiff"
+# Finder can only save the window's layout on a writable image, so the DMG starts as one.
+hdiutil create -volname "Molt" -srcfolder "$STAGE" -fs HFS+ -format UDRW -size "$(( $(du -sm "$STAGE" | cut -f1) + 20 ))m" -ov -quiet "$BUILD/Molt-rw.dmg"
+hdiutil attach "$BUILD/Molt-rw.dmg" -readwrite -noverify -noautoopen -quiet
+osascript scripts/dmg-layout.applescript
+rm -rf /Volumes/Molt/.fseventsd
+sync
+hdiutil detach /Volumes/Molt -quiet
+hdiutil convert "$BUILD/Molt-rw.dmg" -format UDZO -ov -quiet -o "$BUILD/Molt.dmg"
+rm "$BUILD/Molt-rw.dmg"
 
 if [ "$MODE" = "release" ]; then
     codesign --sign "Developer ID Application" --timestamp "$BUILD/Molt.dmg"

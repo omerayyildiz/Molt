@@ -38,6 +38,6 @@ A pull request with a rule also:
 
 ## Contributor Agreement
 
-Molt is published under the GPL and also sold on the Mac App Store by its author. Before your first pull request is
+Molt is published under the GPL and also distributed on the Mac App Store by its author. Before your first pull request is
 merged you will be asked to agree that your contribution may be distributed in both. The agreement text will be added
 here before outside contributions are accepted.

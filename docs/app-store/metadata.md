@@ -7,7 +7,7 @@ Everything App Store Connect asks for, ready to paste. Screenshots: run `scripts
 
 | Field | Value |
 |---|---|
-| Name | Molt (if taken: Molt: Developer Cleaner) |
+| Name | Molt: Developer Cleaner ("Molt" is taken) |
 | Bundle ID | miedinger.Molt |
 | SKU | molt-macos |
 | Primary category | Utilities |
@@ -15,7 +15,7 @@ Everything App Store Connect asks for, ready to paste. Screenshots: run `scripts
 | Content rights | Does not use third-party content |
 | Age rating | 4+ (answer "None" to every question) |
 | Copyright | 2026 Ömer Ayyıldız |
-| Price | USD 2.99 |
+| Price | Free |
 
 ## URLs
 
@@ -64,36 +64,36 @@ Molt is open source under the GPL-3.0. On first launch it asks once for access t
 
 ## Turkish
 
-**Name**: Molt
+**Name** (30): Molt: Disk Temizleyici
 
-**Subtitle** (30): Geliştirici çöpünü temizle
+**Subtitle** (30): Mac'ini hafiflet
 
-**Promotional text**: Molt, geliştiricilerin biriktirdiği yeniden oluşturulabilir dosyaları bulur; node_modules'tan Xcode'un Derived Data'sına kadar her birini açıklar ve yalnızca işaretlediğini siler.
+**Promotional text** (170): Molt, node_modules klasörlerini, Xcode verilerini ve önbellekleri bulur. Her dosyanın ne olduğunu açıklar, yalnızca senin seçtiklerini siler.
 
-**Keywords** (100): node_modules,xcode,önbellek,temizleyici,disk,depolama,geliştirici,simülatör,npm,homebrew,yer aç
+**Keywords** (100): node_modules,xcode,derived data,önbellek,disk,depolama,simülatör,npm,homebrew,cache,temizlik
 
 **Description:**
 
 ```
-Molt, bir geliştiricinin Mac'ini sessizce dolduran ve yeniden oluşturulabilen dosyaları bulur: unuttuğun node_modules klasörleri, Xcode'un Derived Data'sı ve cihaz desteği dosyaları, simülatör önbellekleri, npm ve Homebrew indirmeleri, Python ortamları, yerel yapay zekâ modelleri, uygulama önbellekleri ve kayıtlar.
+Molt, Mac'inde yer kaplayan geliştirici dosyalarını bulur. Unuttuğun node_modules klasörlerini, Xcode'un Derived Data verilerini, simülatör önbelleklerini, npm ve Homebrew indirmelerini, Python ortamlarını, yerel yapay zekâ modellerini, uygulama önbelleklerini ve kayıt dosyalarını tek ekranda gösterir.
 
-Her öğe ne olduğunu, silmenin ne kadar güvenli olduğunu ve nasıl geri geldiğini söyler. Sen işaretlemeden hiçbir şey seçili değildir.
+Her öğenin ne olduğunu, silinince ne olacağını ve nasıl geri geleceğini açıklar. Sen seçmedikçe hiçbir şey silinmez.
 
-GÜVENEBİLECEĞİN BİR TEMİZLEYİCİ
-• Yalnızca yeniden oluşan dosyalar: Molt'un neye dokunabileceğine sabit bir kural listesi karar verir. Belgeler, fotoğraflar, ayarlar, e-posta ve iCloud dosyaları bu listede asla yoktur.
-• Üç güven seviyesi: Güvenli (kendiliğinden ya da bir sonraki build'le geri gelir), Dikkat (yeniden indirilerek geri gelir) ve Riskli (geri gelmez, bu yüzden silinmek yerine Çöp Sepeti'ne gider).
-• Her öğe silinmeden hemen önce yeniden kontrol edilir.
-• Hesap yok, analitik yok, internet bağlantısı yok.
+GÜVENLE TEMİZLE
+• Molt yalnızca yeniden oluşturulabilen dosyalara dokunur. Neleri silebileceğini sabit bir kural listesi belirler. Belgelerin, fotoğrafların, ayarların, e-postaların ve iCloud dosyaların bu listede yer almaz.
+• Her öğenin bir güven seviyesi vardır. Güvenli öğeler kendiliğinden ya da bir sonraki derlemede geri gelir. Dikkat gerektiren öğeler yeniden indirilir. Riskli öğeler geri gelmez, bu yüzden silinmez ve Çöp Sepeti'ne taşınır.
+• Molt her öğeyi silmeden hemen önce yeniden kontrol eder.
+• Hesap açman gerekmez. Molt veri toplamaz ve internete bağlanmaz.
 
-DİSKİNİ SİSTEM AYARLARI GİBİ GÖR
-• Genel bakış diski kategorilere böler; "Sistem Verileri"nin neden oluştuğunu görürsün.
-• Aylardır açmadığın projeleri bulmak için güvene ya da yaşa göre filtrele.
-• Boyuta ya da tarihe göre sırala, toplu işaretle, saklamak istediğin klasörleri bir daha gösterme.
+DİSKİNİ TANI
+• Genel bakış ekranı diskini kategorilere ayırır. "Sistem Verileri"nin nelerden oluştuğunu görürsün.
+• Güven seviyesine ya da yaşa göre filtreleyerek aylardır açmadığın projeleri bulabilirsin.
+• Öğeleri boyuta ya da tarihe göre sıralayabilir, toplu seçebilir, saklamak istediklerini listeden kalıcı olarak çıkarabilirsin.
 
 KEŞİŞ YENGECİ MOLT
-Ağır kabuğunu bırakıp hafif bir kabuğa geçen keşiş yengeci gibi, Molt da Mac'inin artık ihtiyacı olmayanı bırakmasına yardım eder.
+Keşiş yengeci ağırlaşan kabuğunu bırakıp daha hafif bir kabuğa geçer. Molt da Mac'inin artık ihtiyaç duymadığı dosyalardan kurtulmasını sağlar.
 
-Molt, GPL-3.0 lisanslı açık kaynak bir yazılımdır. İlk açılışta, taradığı tek klasör olan ev klasörüne erişim için bir kez izin ister.
+Molt, GPL-3.0 lisanslı açık kaynak bir uygulamadır. İlk açılışta yalnızca ev klasörüne erişim izni ister ve yalnızca bu klasörü tarar.
 ```
 
 ## Notes for App Review
