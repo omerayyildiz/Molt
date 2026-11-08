@@ -6,6 +6,7 @@ const DOWNLOAD_URL = "https://github.com/omerayyildiz/Molt/releases/latest/downl
 const TURKISH = {
   "nav.how": "Nasıl çalışır",
   "nav.finds": "Neleri bulur",
+  "skip": "İçeriğe geç",
   "nav.versions": "Sürümler",
   "nav.download": "İndir",
   "hero.title": "Kodunun geride bıraktığı dağınıklığı temizle.",

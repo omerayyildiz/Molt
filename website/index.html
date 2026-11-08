@@ -10,14 +10,18 @@
   <meta property="og:title" content="Molt · Clear the clutter your code leaves behind">
   <meta property="og:description" content="A free, open source Mac app for developers. See what each file is before anything is removed.">
   <meta property="og:image" content="https://molt.omerayyildiz.com/assets/og-image.png">
-  <meta property="og:url" content="https://molt.omerayyildiz.com">
+  <meta property="og:url" content="https://molt.omerayyildiz.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Molt">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <script>
+    document.documentElement.classList.add("js");
     try { const theme = localStorage.getItem("theme"); if (theme) document.documentElement.dataset.theme = theme; } catch {}
   </script>
   <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Molt", "url": "https://molt.omerayyildiz.com/", "description": "A free, open source Mac app that finds rebuildable developer files, explains each one and removes only what you choose.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "macOS 15 or later", "softwareVersion": "1.0", "downloadUrl": "https://github.com/omerayyildiz/Molt/releases/latest/download/Molt.dmg", "image": "https://molt.omerayyildiz.com/assets/apple-touch-icon.png", "license": "https://www.gnu.org/licenses/gpl-3.0.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Ömer Ayyıldız", "url": "https://omerayyildiz.com"}}</script>
 </head>
 <body>
   <!-- Icons used across the page, drawn once and referenced with <use>. -->
@@ -39,6 +43,7 @@
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
   </svg>
 
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <header class="nav-wrap">
     <nav class="nav" aria-label="Main">
       <a class="brand" href="/">
@@ -60,7 +65,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Hero: copy and a small Molt window that cleans itself on a loop -->
     <section class="hero">
       <div class="hero-copy">
